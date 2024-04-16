@@ -113,7 +113,7 @@
                     {
                       "workerIndex": 0,
                       "status": "passed",
-                      "duration": 14194,
+                      "duration": 12658,
                       "errors": [],
                       "stdout": [
                         {
@@ -173,12 +173,12 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2024-04-16T13:04:45.911Z",
+                      "startTime": "2024-04-16T13:37:25.260Z",
                       "attachments": [
                         {
                           "name": "Cart Total",
                           "contentType": "image/png",
-                          "path": "c:\\Users\\AbidMiah\\source\\repos\\uk.co.nfocus.ecommerceplaywright\\eCommerce-Automated-Tests-w-Playwright\\test-results\\eCommerce-eCommerce-Tests-Applying-Coupon---nfocus--chrome-test\\attachments\\Cart-Total-b2d8e2ff1ad37a965fa7d7bee202f2e0169222d4.png"
+                          "path": "c:\\Users\\AbidMiah\\source\\repos\\uk.co.nfocus.ecommerceplaywright\\eCommerce-Automated-Tests-w-Playwright\\test-results\\eCommerce-eCommerce-Tests-Applying-Coupon---nfocus--chrome-test\\attachments\\Cart-Total-60ba3a10648cb78de9248fff25cf1f9e2f4049af.png"
                         }
                       ]
                     }
@@ -206,7 +206,7 @@
                     {
                       "workerIndex": 0,
                       "status": "passed",
-                      "duration": 12253,
+                      "duration": 12202,
                       "errors": [],
                       "stdout": [
                         {
@@ -266,12 +266,12 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2024-04-16T13:05:00.329Z",
+                      "startTime": "2024-04-16T13:37:38.184Z",
                       "attachments": [
                         {
                           "name": "Cart Total",
                           "contentType": "image/png",
-                          "path": "c:\\Users\\AbidMiah\\source\\repos\\uk.co.nfocus.ecommerceplaywright\\eCommerce-Automated-Tests-w-Playwright\\test-results\\eCommerce-eCommerce-Tests-Applying-Coupon---edgewords--chrome-test\\attachments\\Cart-Total-5534f3b7b459f197405fc7239495c7ffe24e0bca.png"
+                          "path": "c:\\Users\\AbidMiah\\source\\repos\\uk.co.nfocus.ecommerceplaywright\\eCommerce-Automated-Tests-w-Playwright\\test-results\\eCommerce-eCommerce-Tests-Applying-Coupon---edgewords--chrome-test\\attachments\\Cart-Total-c0d7bd49aa95831ba235b6bd445e2f3f0d8254e8.png"
                         }
                       ]
                     }
@@ -283,128 +283,6 @@
               "file": "eCommerce.spec.ts",
               "line": 10,
               "column": 9
-            },
-            {
-              "title": "Checkout Process",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chrome-test",
-                  "projectName": "chrome-test",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "status": "passed",
-                      "duration": 11276,
-                      "errors": [],
-                      "stdout": [
-                        {
-                          "text": "Succesfully Logged In\n"
-                        },
-                        {
-                          "text": "Navigated to the Shop Page\n"
-                        },
-                        {
-                          "text": "'Beanie' exists on the shop page..\n"
-                        },
-                        {
-                          "text": "Added to Cart\n"
-                        },
-                        {
-                          "text": "'Hoodie' exists on the shop page..\n"
-                        },
-                        {
-                          "text": "Added to Cart\n"
-                        },
-                        {
-                          "text": "'Sunglasses' exists on the shop page..\n"
-                        },
-                        {
-                          "text": "Added to Cart\n"
-                        },
-                        {
-                          "text": "Navigated to the Cart Page\n"
-                        },
-                        {
-                          "text": "Navigated to Checkout page\n"
-                        },
-                        {
-                          "text": "Billing Details Populated..\n"
-                        },
-                        {
-                          "text": "Validated Billing Details have been populated correctly.\n"
-                        },
-                        {
-                          "text": "Cheque Payment Selected\n"
-                        },
-                        {
-                          "text": "Order Placed..\n"
-                        },
-                        {
-                          "text": "Attaching 'New Order' screenshot to report\n"
-                        },
-                        {
-                          "text": "New Order Number: 12568\n"
-                        },
-                        {
-                          "text": "Navigated to the Account Page\n"
-                        },
-                        {
-                          "text": "Navigated to All Orders on account page\n"
-                        },
-                        {
-                          "text": "Verified that the order numbers match from checkout page..\n"
-                        },
-                        {
-                          "text": "Expected order number: 12568, Actual order number: 12568\n"
-                        },
-                        {
-                          "text": "Attaching 'All Orders' screenshot to report\n"
-                        },
-                        {
-                          "text": "Navigated to the Cart Page\n"
-                        },
-                        {
-                          "text": "Check Cart Cleared\n"
-                        },
-                        {
-                          "text": "Navigated to the Account Page\n"
-                        },
-                        {
-                          "text": "Successfully Logged Out\n"
-                        },
-                        {
-                          "text": "Test Passed & Completed!\n"
-                        }
-                      ],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2024-04-16T13:05:12.585Z",
-                      "attachments": [
-                        {
-                          "name": "New Order",
-                          "contentType": "image/png",
-                          "path": "c:\\Users\\AbidMiah\\source\\repos\\uk.co.nfocus.ecommerceplaywright\\eCommerce-Automated-Tests-w-Playwright\\test-results\\eCommerce-eCommerce-Tests-Checkout-Process-chrome-test\\attachments\\New-Order-29569c558b361453f6c9d8c60408314030076166.png"
-                        },
-                        {
-                          "name": "All Orders",
-                          "contentType": "image/png",
-                          "path": "c:\\Users\\AbidMiah\\source\\repos\\uk.co.nfocus.ecommerceplaywright\\eCommerce-Automated-Tests-w-Playwright\\test-results\\eCommerce-eCommerce-Tests-Checkout-Process-chrome-test\\attachments\\All-Orders-1e5368fe8303a02953d9f8d55f176b891a0fbd84.png"
-                        }
-                      ]
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "568ae895ec11cac00796-9512d8e3086dbe8b7ea0",
-              "file": "eCommerce.spec.ts",
-              "line": 38,
-              "column": 7
             }
           ]
         }
@@ -413,9 +291,9 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2024-04-16T13:04:45.550Z",
-    "duration": 38334.619,
-    "expected": 3,
+    "startTime": "2024-04-16T13:37:24.896Z",
+    "duration": 25507.915,
+    "expected": 2,
     "skipped": 0,
     "unexpected": 0,
     "flaky": 0

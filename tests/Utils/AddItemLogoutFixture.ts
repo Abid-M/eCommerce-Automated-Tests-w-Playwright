@@ -2,21 +2,25 @@ import {test as base, expect} from "@playwright/test";
 import * as POMs from "../POMPages"
 import products from "../JSONData/Products.json"
 
+// Declaring types of fixtures ( for type arguments)
 type fixtures = {
-    // Setup/teardown
+    // Setup/Teardown
     addItemLogoutFix: any;
-    // POM pages as fixtures
-    accountPOM: any;
-    loginPOM: any;
-    navPOM: any;
-    shopPOM: any;
-    cartPOM: any;
-    checkoutPOM: any;
-    orderInfoPOM: any;
-    allOrdersPOM: any;
 }
 
-export const test = base.extend<fixtures>({
+type pomFixtures = {
+    // POM pages as fixtures
+    accountPOM: POMs.MyAccountPOM;
+    loginPOM: POMs.LoginPOM;
+    navPOM: POMs.NavPOM;
+    shopPOM: POMs.ShopPOM;
+    cartPOM: POMs.CartPOM;
+    checkoutPOM: POMs.CheckoutPOM;
+    orderInfoPOM: POMs.OrderInfoPOM;
+    allOrdersPOM: POMs.AllOrdersPOM;
+}
+
+export const test = base.extend<fixtures & pomFixtures>({
     addItemLogoutFix: async({page, accountPOM, navPOM, loginPOM, shopPOM, cartPOM}, use) => {
         const addItemLogoutFix = undefined;
         
