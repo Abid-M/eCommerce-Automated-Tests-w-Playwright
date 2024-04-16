@@ -99,8 +99,8 @@
           "column": 6,
           "specs": [
             {
-              "title": "Checkout Process",
-              "ok": false,
+              "title": "Applying Coupon - 'nfocus'",
+              "ok": true,
               "tags": [],
               "tests": [
                 {
@@ -112,28 +112,195 @@
                   "results": [
                     {
                       "workerIndex": 0,
-                      "status": "failed",
-                      "duration": 13528,
-                      "error": {
-                        "message": "Error: Billing input fields mismatch.\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mresolves\u001b[2m.\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"\"\u001b[39m\nReceived: \u001b[31m\"Expected City to be 'London' but got 'Paris'\"\u001b[39m",
-                        "stack": "Error: Billing input fields mismatch.\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mresolves\u001b[2m.\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"\"\u001b[39m\nReceived: \u001b[31m\"Expected City to be 'London' but got 'Paris'\"\u001b[39m\n    at c:\\Users\\AbidMiah\\source\\repos\\uk.co.nfocus.ecommerceplaywright\\eCommerce-Automated-Tests-w-Playwright\\tests\\eCommerce.spec.ts:56:71",
-                        "location": {
-                          "file": "c:\\Users\\AbidMiah\\source\\repos\\uk.co.nfocus.ecommerceplaywright\\eCommerce-Automated-Tests-w-Playwright\\tests\\eCommerce.spec.ts",
-                          "column": 71,
-                          "line": 56
-                        },
-                        "snippet": "\u001b[0m \u001b[90m 54 |\u001b[39m     \u001b[36mconst\u001b[39m mismatch \u001b[33m=\u001b[39m checkoutPOM\u001b[33m.\u001b[39m\u001b[33mValidateDetails\u001b[39m(customerInfo)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 55 |\u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 56 |\u001b[39m     \u001b[36mawait\u001b[39m expect(mismatch\u001b[33m,\u001b[39m \u001b[32m`Billing input fields mismatch.`\u001b[39m)\u001b[33m.\u001b[39mresolves\u001b[33m.\u001b[39mtoBe(\u001b[32m''\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m    |\u001b[39m                                                                       \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 57 |\u001b[39m     console\u001b[33m.\u001b[39mlog(\u001b[32m\"Validated Billing Details have been populated correctly.\"\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 58 |\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 59 |\u001b[39m     \u001b[90m// Selects payment and places the order\u001b[39m\u001b[0m"
-                      },
-                      "errors": [
+                      "status": "passed",
+                      "duration": 14194,
+                      "errors": [],
+                      "stdout": [
                         {
-                          "location": {
-                            "file": "c:\\Users\\AbidMiah\\source\\repos\\uk.co.nfocus.ecommerceplaywright\\eCommerce-Automated-Tests-w-Playwright\\tests\\eCommerce.spec.ts",
-                            "column": 71,
-                            "line": 56
-                          },
-                          "message": "Error: Billing input fields mismatch.\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mresolves\u001b[2m.\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"\"\u001b[39m\nReceived: \u001b[31m\"Expected City to be 'London' but got 'Paris'\"\u001b[39m\n\n\u001b[0m \u001b[90m 54 |\u001b[39m     \u001b[36mconst\u001b[39m mismatch \u001b[33m=\u001b[39m checkoutPOM\u001b[33m.\u001b[39m\u001b[33mValidateDetails\u001b[39m(customerInfo)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 55 |\u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 56 |\u001b[39m     \u001b[36mawait\u001b[39m expect(mismatch\u001b[33m,\u001b[39m \u001b[32m`Billing input fields mismatch.`\u001b[39m)\u001b[33m.\u001b[39mresolves\u001b[33m.\u001b[39mtoBe(\u001b[32m''\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m    |\u001b[39m                                                                       \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 57 |\u001b[39m     console\u001b[33m.\u001b[39mlog(\u001b[32m\"Validated Billing Details have been populated correctly.\"\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 58 |\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 59 |\u001b[39m     \u001b[90m// Selects payment and places the order\u001b[39m\u001b[0m\n\n\u001b[2m    at c:\\Users\\AbidMiah\\source\\repos\\uk.co.nfocus.ecommerceplaywright\\eCommerce-Automated-Tests-w-Playwright\\tests\\eCommerce.spec.ts:56:71\u001b[22m"
+                          "text": "Succesfully Logged In\n"
+                        },
+                        {
+                          "text": "Navigated to the Shop Page\n"
+                        },
+                        {
+                          "text": "'Beanie' exists on the shop page..\n"
+                        },
+                        {
+                          "text": "Added to Cart\n"
+                        },
+                        {
+                          "text": "'Hoodie' exists on the shop page..\n"
+                        },
+                        {
+                          "text": "Added to Cart\n"
+                        },
+                        {
+                          "text": "'Sunglasses' exists on the shop page..\n"
+                        },
+                        {
+                          "text": "Added to Cart\n"
+                        },
+                        {
+                          "text": "Navigated to the Cart Page\n"
+                        },
+                        {
+                          "text": "Valid Coupon Applied: 'nfocus'\n"
+                        },
+                        {
+                          "text": "Applied a 25% discount\n"
+                        },
+                        {
+                          "text": "Calculated total: £116.45\n"
+                        },
+                        {
+                          "text": "Expected total value: £116.45, Actual total value: £116.45\n"
+                        },
+                        {
+                          "text": "Attaching 'Cart Total' screenshot to report\n"
+                        },
+                        {
+                          "text": "Check Cart Cleared\n"
+                        },
+                        {
+                          "text": "Navigated to the Account Page\n"
+                        },
+                        {
+                          "text": "Successfully Logged Out\n"
+                        },
+                        {
+                          "text": "Test Passed & Completed!\n"
                         }
                       ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2024-04-16T13:04:45.911Z",
+                      "attachments": [
+                        {
+                          "name": "Cart Total",
+                          "contentType": "image/png",
+                          "path": "c:\\Users\\AbidMiah\\source\\repos\\uk.co.nfocus.ecommerceplaywright\\eCommerce-Automated-Tests-w-Playwright\\test-results\\eCommerce-eCommerce-Tests-Applying-Coupon---nfocus--chrome-test\\attachments\\Cart-Total-b2d8e2ff1ad37a965fa7d7bee202f2e0169222d4.png"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "568ae895ec11cac00796-f283b05998bbd54b585f",
+              "file": "eCommerce.spec.ts",
+              "line": 10,
+              "column": 9
+            },
+            {
+              "title": "Applying Coupon - 'edgewords'",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chrome-test",
+                  "projectName": "chrome-test",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "status": "passed",
+                      "duration": 12253,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "Succesfully Logged In\n"
+                        },
+                        {
+                          "text": "Navigated to the Shop Page\n"
+                        },
+                        {
+                          "text": "'Beanie' exists on the shop page..\n"
+                        },
+                        {
+                          "text": "Added to Cart\n"
+                        },
+                        {
+                          "text": "'Hoodie' exists on the shop page..\n"
+                        },
+                        {
+                          "text": "Added to Cart\n"
+                        },
+                        {
+                          "text": "'Sunglasses' exists on the shop page..\n"
+                        },
+                        {
+                          "text": "Added to Cart\n"
+                        },
+                        {
+                          "text": "Navigated to the Cart Page\n"
+                        },
+                        {
+                          "text": "Valid Coupon Applied: 'edgewords'\n"
+                        },
+                        {
+                          "text": "Applied a 15% discount\n"
+                        },
+                        {
+                          "text": "Calculated total: £131.45\n"
+                        },
+                        {
+                          "text": "Expected total value: £131.45, Actual total value: £131.45\n"
+                        },
+                        {
+                          "text": "Attaching 'Cart Total' screenshot to report\n"
+                        },
+                        {
+                          "text": "Check Cart Cleared\n"
+                        },
+                        {
+                          "text": "Navigated to the Account Page\n"
+                        },
+                        {
+                          "text": "Successfully Logged Out\n"
+                        },
+                        {
+                          "text": "Test Passed & Completed!\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2024-04-16T13:05:00.329Z",
+                      "attachments": [
+                        {
+                          "name": "Cart Total",
+                          "contentType": "image/png",
+                          "path": "c:\\Users\\AbidMiah\\source\\repos\\uk.co.nfocus.ecommerceplaywright\\eCommerce-Automated-Tests-w-Playwright\\test-results\\eCommerce-eCommerce-Tests-Applying-Coupon---edgewords--chrome-test\\attachments\\Cart-Total-5534f3b7b459f197405fc7239495c7ffe24e0bca.png"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "568ae895ec11cac00796-04acfeb62b6105521e96",
+              "file": "eCommerce.spec.ts",
+              "line": 10,
+              "column": 9
+            },
+            {
+              "title": "Checkout Process",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chrome-test",
+                  "projectName": "chrome-test",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "status": "passed",
+                      "duration": 11276,
+                      "errors": [],
                       "stdout": [
                         {
                           "text": "Succesfully Logged In\n"
@@ -169,6 +336,36 @@
                           "text": "Billing Details Populated..\n"
                         },
                         {
+                          "text": "Validated Billing Details have been populated correctly.\n"
+                        },
+                        {
+                          "text": "Cheque Payment Selected\n"
+                        },
+                        {
+                          "text": "Order Placed..\n"
+                        },
+                        {
+                          "text": "Attaching 'New Order' screenshot to report\n"
+                        },
+                        {
+                          "text": "New Order Number: 12568\n"
+                        },
+                        {
+                          "text": "Navigated to the Account Page\n"
+                        },
+                        {
+                          "text": "Navigated to All Orders on account page\n"
+                        },
+                        {
+                          "text": "Verified that the order numbers match from checkout page..\n"
+                        },
+                        {
+                          "text": "Expected order number: 12568, Actual order number: 12568\n"
+                        },
+                        {
+                          "text": "Attaching 'All Orders' screenshot to report\n"
+                        },
+                        {
                           "text": "Navigated to the Cart Page\n"
                         },
                         {
@@ -186,22 +383,22 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2024-04-16T12:55:50.728Z",
+                      "startTime": "2024-04-16T13:05:12.585Z",
                       "attachments": [
                         {
-                          "name": "screenshot",
+                          "name": "New Order",
                           "contentType": "image/png",
-                          "path": "c:\\Users\\AbidMiah\\source\\repos\\uk.co.nfocus.ecommerceplaywright\\eCommerce-Automated-Tests-w-Playwright\\test-results\\eCommerce-eCommerce-Tests-Checkout-Process-chrome-test\\test-failed-1.png"
+                          "path": "c:\\Users\\AbidMiah\\source\\repos\\uk.co.nfocus.ecommerceplaywright\\eCommerce-Automated-Tests-w-Playwright\\test-results\\eCommerce-eCommerce-Tests-Checkout-Process-chrome-test\\attachments\\New-Order-29569c558b361453f6c9d8c60408314030076166.png"
+                        },
+                        {
+                          "name": "All Orders",
+                          "contentType": "image/png",
+                          "path": "c:\\Users\\AbidMiah\\source\\repos\\uk.co.nfocus.ecommerceplaywright\\eCommerce-Automated-Tests-w-Playwright\\test-results\\eCommerce-eCommerce-Tests-Checkout-Process-chrome-test\\attachments\\All-Orders-1e5368fe8303a02953d9f8d55f176b891a0fbd84.png"
                         }
-                      ],
-                      "errorLocation": {
-                        "file": "c:\\Users\\AbidMiah\\source\\repos\\uk.co.nfocus.ecommerceplaywright\\eCommerce-Automated-Tests-w-Playwright\\tests\\eCommerce.spec.ts",
-                        "column": 71,
-                        "line": 56
-                      }
+                      ]
                     }
                   ],
-                  "status": "unexpected"
+                  "status": "expected"
                 }
               ],
               "id": "568ae895ec11cac00796-9512d8e3086dbe8b7ea0",
@@ -216,11 +413,11 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2024-04-16T12:55:50.386Z",
-    "duration": 14152.515,
-    "expected": 0,
+    "startTime": "2024-04-16T13:04:45.550Z",
+    "duration": 38334.619,
+    "expected": 3,
     "skipped": 0,
-    "unexpected": 1,
+    "unexpected": 0,
     "flaky": 0
   }
 }

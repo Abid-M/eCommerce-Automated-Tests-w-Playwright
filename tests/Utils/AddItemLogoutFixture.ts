@@ -74,8 +74,6 @@ export const test = base.extend<fixtures>({
         await expect(page.getByText("Login"), "Logout Failed").toBeVisible();
         console.log("Successfully Logged Out")
         console.log("Test Passed & Completed!")
-    
-        page.close();
     },
 
     accountPOM: async({page}, use) => {
