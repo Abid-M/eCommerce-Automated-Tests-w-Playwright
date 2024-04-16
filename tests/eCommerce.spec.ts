@@ -13,7 +13,7 @@ test.describe("eCommerce Tests", () => {
       await expect(cartPOM.alertMessage(), `Coupon Code '${code}, does not exist!`).not.toContainText("does not exist!");
       console.log(`Valid Coupon Applied: '${code}'`);
 
-      const expectedDiscount = discount; // Expected Discount of 25% for nfocus coupon
+      const expectedDiscount = discount; // Expected Discount of 25% for nfocus. 15% for edgewords
       const actualDiscount = await cartPOM.GetDiscountPercentage(code); // Calculates actual discount
       await expect(actualDiscount, `Expected ${expectedDiscount}% off, Actual ${actualDiscount}% off instead`).toBe(expectedDiscount);
 
@@ -57,7 +57,7 @@ test.describe("eCommerce Tests", () => {
     console.log("Validated Billing Details have been populated correctly.");
 
     // Selects payment and places the order
-    const paymentMethod: string = "Cash";
+    const paymentMethod: string = "Cheque";
     await (await checkoutPOM.SelectPayment(paymentMethod)).PlaceOrder();
 
     // Take screenshot of the new Order
@@ -91,7 +91,6 @@ test.describe("eCommerce Tests", () => {
       path: `./Screenshots/All Orders, ${date}.png`,
       mask: [page.locator('tbody tr').nth(0)],
       maskColor: 'rgba(201, 242, 155, 0.5)',
-      style: 'tbody tr:nth-child(1) {border: 5px dotted red}'
     });
 
     console.log("Attaching 'All Orders' screenshot to report");

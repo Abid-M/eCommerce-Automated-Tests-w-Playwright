@@ -76,7 +76,6 @@ export const test = base.extend<fixtures>({
         console.log("Test Passed & Completed!")
     
         page.close();
-
     },
 
     accountPOM: async({page}, use) => {

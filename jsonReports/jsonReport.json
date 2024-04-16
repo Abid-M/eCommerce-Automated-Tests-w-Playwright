@@ -99,8 +99,8 @@
           "column": 6,
           "specs": [
             {
-              "title": "Applying Coupon - 'nfocus'",
-              "ok": true,
+              "title": "Checkout Process",
+              "ok": false,
               "tags": [],
               "tests": [
                 {
@@ -112,9 +112,28 @@
                   "results": [
                     {
                       "workerIndex": 0,
-                      "status": "passed",
-                      "duration": 12286,
-                      "errors": [],
+                      "status": "failed",
+                      "duration": 13528,
+                      "error": {
+                        "message": "Error: Billing input fields mismatch.\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mresolves\u001b[2m.\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"\"\u001b[39m\nReceived: \u001b[31m\"Expected City to be 'London' but got 'Paris'\"\u001b[39m",
+                        "stack": "Error: Billing input fields mismatch.\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mresolves\u001b[2m.\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"\"\u001b[39m\nReceived: \u001b[31m\"Expected City to be 'London' but got 'Paris'\"\u001b[39m\n    at c:\\Users\\AbidMiah\\source\\repos\\uk.co.nfocus.ecommerceplaywright\\eCommerce-Automated-Tests-w-Playwright\\tests\\eCommerce.spec.ts:56:71",
+                        "location": {
+                          "file": "c:\\Users\\AbidMiah\\source\\repos\\uk.co.nfocus.ecommerceplaywright\\eCommerce-Automated-Tests-w-Playwright\\tests\\eCommerce.spec.ts",
+                          "column": 71,
+                          "line": 56
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 54 |\u001b[39m     \u001b[36mconst\u001b[39m mismatch \u001b[33m=\u001b[39m checkoutPOM\u001b[33m.\u001b[39m\u001b[33mValidateDetails\u001b[39m(customerInfo)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 55 |\u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 56 |\u001b[39m     \u001b[36mawait\u001b[39m expect(mismatch\u001b[33m,\u001b[39m \u001b[32m`Billing input fields mismatch.`\u001b[39m)\u001b[33m.\u001b[39mresolves\u001b[33m.\u001b[39mtoBe(\u001b[32m''\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m    |\u001b[39m                                                                       \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 57 |\u001b[39m     console\u001b[33m.\u001b[39mlog(\u001b[32m\"Validated Billing Details have been populated correctly.\"\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 58 |\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 59 |\u001b[39m     \u001b[90m// Selects payment and places the order\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "c:\\Users\\AbidMiah\\source\\repos\\uk.co.nfocus.ecommerceplaywright\\eCommerce-Automated-Tests-w-Playwright\\tests\\eCommerce.spec.ts",
+                            "column": 71,
+                            "line": 56
+                          },
+                          "message": "Error: Billing input fields mismatch.\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mresolves\u001b[2m.\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"\"\u001b[39m\nReceived: \u001b[31m\"Expected City to be 'London' but got 'Paris'\"\u001b[39m\n\n\u001b[0m \u001b[90m 54 |\u001b[39m     \u001b[36mconst\u001b[39m mismatch \u001b[33m=\u001b[39m checkoutPOM\u001b[33m.\u001b[39m\u001b[33mValidateDetails\u001b[39m(customerInfo)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 55 |\u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 56 |\u001b[39m     \u001b[36mawait\u001b[39m expect(mismatch\u001b[33m,\u001b[39m \u001b[32m`Billing input fields mismatch.`\u001b[39m)\u001b[33m.\u001b[39mresolves\u001b[33m.\u001b[39mtoBe(\u001b[32m''\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m    |\u001b[39m                                                                       \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 57 |\u001b[39m     console\u001b[33m.\u001b[39mlog(\u001b[32m\"Validated Billing Details have been populated correctly.\"\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 58 |\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 59 |\u001b[39m     \u001b[90m// Selects payment and places the order\u001b[39m\u001b[0m\n\n\u001b[2m    at c:\\Users\\AbidMiah\\source\\repos\\uk.co.nfocus.ecommerceplaywright\\eCommerce-Automated-Tests-w-Playwright\\tests\\eCommerce.spec.ts:56:71\u001b[22m"
+                        }
+                      ],
                       "stdout": [
                         {
                           "text": "Succesfully Logged In\n"
@@ -144,114 +163,15 @@
                           "text": "Navigated to the Cart Page\n"
                         },
                         {
-                          "text": "Valid Coupon Applied: 'nfocus'\n"
+                          "text": "Navigated to Checkout page\n"
                         },
                         {
-                          "text": "Applied a 25% discount\n"
-                        },
-                        {
-                          "text": "Calculated total: £116.45\n"
-                        },
-                        {
-                          "text": "Expected total value: £116.45, Actual total value: £116.45\n"
-                        },
-                        {
-                          "text": "Attaching 'Cart Total' screenshot to report\n"
-                        },
-                        {
-                          "text": "Check Cart Cleared\n"
-                        },
-                        {
-                          "text": "Navigated to the Account Page\n"
-                        },
-                        {
-                          "text": "Successfully Logged Out\n"
-                        },
-                        {
-                          "text": "Test Passed & Completed!\n"
-                        }
-                      ],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2024-04-16T12:32:11.639Z",
-                      "attachments": [
-                        {
-                          "name": "Cart Total",
-                          "contentType": "image/png",
-                          "path": "c:\\Users\\AbidMiah\\source\\repos\\uk.co.nfocus.ecommerceplaywright\\eCommerce-Automated-Tests-w-Playwright\\test-results\\eCommerce-eCommerce-Tests-Applying-Coupon---nfocus--chrome-test\\attachments\\Cart-Total-5f7e651e36926e7755b3aec0321db7e09bfd746a.png"
-                        }
-                      ]
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "568ae895ec11cac00796-f283b05998bbd54b585f",
-              "file": "eCommerce.spec.ts",
-              "line": 10,
-              "column": 9
-            },
-            {
-              "title": "Applying Coupon - 'edgewords'",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chrome-test",
-                  "projectName": "chrome-test",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "status": "passed",
-                      "duration": 12493,
-                      "errors": [],
-                      "stdout": [
-                        {
-                          "text": "Succesfully Logged In\n"
-                        },
-                        {
-                          "text": "Navigated to the Shop Page\n"
-                        },
-                        {
-                          "text": "'Beanie' exists on the shop page..\n"
-                        },
-                        {
-                          "text": "Added to Cart\n"
-                        },
-                        {
-                          "text": "'Hoodie' exists on the shop page..\n"
-                        },
-                        {
-                          "text": "Added to Cart\n"
-                        },
-                        {
-                          "text": "'Sunglasses' exists on the shop page..\n"
-                        },
-                        {
-                          "text": "Added to Cart\n"
+                          "text": "Billing Details Populated..\n"
                         },
                         {
                           "text": "Navigated to the Cart Page\n"
                         },
                         {
-                          "text": "Valid Coupon Applied: 'edgewords'\n"
-                        },
-                        {
-                          "text": "Applied a 15% discount\n"
-                        },
-                        {
-                          "text": "Calculated total: £131.45\n"
-                        },
-                        {
-                          "text": "Expected total value: £131.45, Actual total value: £131.45\n"
-                        },
-                        {
-                          "text": "Attaching 'Cart Total' screenshot to report\n"
-                        },
-                        {
                           "text": "Check Cart Cleared\n"
                         },
                         {
@@ -266,23 +186,28 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2024-04-16T12:32:24.160Z",
+                      "startTime": "2024-04-16T12:55:50.728Z",
                       "attachments": [
                         {
-                          "name": "Cart Total",
+                          "name": "screenshot",
                           "contentType": "image/png",
-                          "path": "c:\\Users\\AbidMiah\\source\\repos\\uk.co.nfocus.ecommerceplaywright\\eCommerce-Automated-Tests-w-Playwright\\test-results\\eCommerce-eCommerce-Tests-Applying-Coupon---edgewords--chrome-test\\attachments\\Cart-Total-299043672d4a588c4e490d8eeb5ea5491de25e5d.png"
+                          "path": "c:\\Users\\AbidMiah\\source\\repos\\uk.co.nfocus.ecommerceplaywright\\eCommerce-Automated-Tests-w-Playwright\\test-results\\eCommerce-eCommerce-Tests-Checkout-Process-chrome-test\\test-failed-1.png"
                         }
-                      ]
+                      ],
+                      "errorLocation": {
+                        "file": "c:\\Users\\AbidMiah\\source\\repos\\uk.co.nfocus.ecommerceplaywright\\eCommerce-Automated-Tests-w-Playwright\\tests\\eCommerce.spec.ts",
+                        "column": 71,
+                        "line": 56
+                      }
                     }
                   ],
-                  "status": "expected"
+                  "status": "unexpected"
                 }
               ],
-              "id": "568ae895ec11cac00796-04acfeb62b6105521e96",
+              "id": "568ae895ec11cac00796-9512d8e3086dbe8b7ea0",
               "file": "eCommerce.spec.ts",
-              "line": 10,
-              "column": 9
+              "line": 38,
+              "column": 7
             }
           ]
         }
@@ -291,11 +216,11 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2024-04-16T12:32:11.281Z",
-    "duration": 25385.175,
-    "expected": 2,
+    "startTime": "2024-04-16T12:55:50.386Z",
+    "duration": 14152.515,
+    "expected": 0,
     "skipped": 0,
-    "unexpected": 0,
+    "unexpected": 1,
     "flaky": 0
   }
 }
