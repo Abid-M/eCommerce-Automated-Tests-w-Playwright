@@ -1,7 +1,7 @@
 {
   "config": {
-    "configFile": "C:\\Users\\AbidMiah\\source\\repos\\uk.co.nfocus.ecommerceplaywright\\playwright.config.ts",
-    "rootDir": "C:/Users/AbidMiah/source/repos/uk.co.nfocus.ecommerceplaywright/tests",
+    "configFile": "c:\\Users\\AbidMiah\\source\\repos\\uk.co.nfocus.ecommerceplaywright\\eCommerce-Automated-Tests-w-Playwright\\playwright.config.ts",
+    "rootDir": "c:/Users/AbidMiah/source/repos/uk.co.nfocus.ecommerceplaywright/eCommerce-Automated-Tests-w-Playwright/tests",
     "forbidOnly": false,
     "fullyParallel": true,
     "globalSetup": null,
@@ -39,12 +39,12 @@
     "quiet": false,
     "projects": [
       {
-        "outputDir": "C:/Users/AbidMiah/source/repos/uk.co.nfocus.ecommerceplaywright/test-results",
+        "outputDir": "c:/Users/AbidMiah/source/repos/uk.co.nfocus.ecommerceplaywright/eCommerce-Automated-Tests-w-Playwright/test-results",
         "repeatEach": 1,
-        "retries": 1,
+        "retries": 0,
         "id": "chrome-test",
         "name": "chrome-test",
-        "testDir": "C:/Users/AbidMiah/source/repos/uk.co.nfocus.ecommerceplaywright/tests",
+        "testDir": "c:/Users/AbidMiah/source/repos/uk.co.nfocus.ecommerceplaywright/eCommerce-Automated-Tests-w-Playwright/tests",
         "testIgnore": [],
         "testMatch": [
           "**/*.@(spec|test).?(c|m)[jt]s?(x)"
@@ -52,12 +52,12 @@
         "timeout": 30000
       },
       {
-        "outputDir": "C:/Users/AbidMiah/source/repos/uk.co.nfocus.ecommerceplaywright/test-results",
+        "outputDir": "c:/Users/AbidMiah/source/repos/uk.co.nfocus.ecommerceplaywright/eCommerce-Automated-Tests-w-Playwright/test-results",
         "repeatEach": 1,
-        "retries": 1,
+        "retries": 0,
         "id": "firefox-test",
         "name": "firefox-test",
-        "testDir": "C:/Users/AbidMiah/source/repos/uk.co.nfocus.ecommerceplaywright/tests",
+        "testDir": "c:/Users/AbidMiah/source/repos/uk.co.nfocus.ecommerceplaywright/eCommerce-Automated-Tests-w-Playwright/tests",
         "testIgnore": [],
         "testMatch": [
           "**/*.@(spec|test).?(c|m)[jt]s?(x)"
@@ -65,12 +65,12 @@
         "timeout": 30000
       },
       {
-        "outputDir": "C:/Users/AbidMiah/source/repos/uk.co.nfocus.ecommerceplaywright/test-results",
+        "outputDir": "c:/Users/AbidMiah/source/repos/uk.co.nfocus.ecommerceplaywright/eCommerce-Automated-Tests-w-Playwright/test-results",
         "repeatEach": 1,
-        "retries": 1,
+        "retries": 0,
         "id": "webkit-test",
         "name": "webkit-test",
-        "testDir": "C:/Users/AbidMiah/source/repos/uk.co.nfocus.ecommerceplaywright/tests",
+        "testDir": "c:/Users/AbidMiah/source/repos/uk.co.nfocus.ecommerceplaywright/eCommerce-Automated-Tests-w-Playwright/tests",
         "testIgnore": [],
         "testMatch": [
           "**/*.@(spec|test).?(c|m)[jt]s?(x)"
@@ -99,7 +99,7 @@
           "column": 6,
           "specs": [
             {
-              "title": "Checkout Process",
+              "title": "Applying Coupon - 'nfocus'",
               "ok": true,
               "tags": [],
               "tests": [
@@ -113,7 +113,7 @@
                     {
                       "workerIndex": 0,
                       "status": "passed",
-                      "duration": 15654,
+                      "duration": 12286,
                       "errors": [],
                       "stdout": [
                         {
@@ -144,43 +144,19 @@
                           "text": "Navigated to the Cart Page\n"
                         },
                         {
-                          "text": "Navigated to Checkout page\n"
+                          "text": "Valid Coupon Applied: 'nfocus'\n"
                         },
                         {
-                          "text": "Billing Details Populated..\n"
+                          "text": "Applied a 25% discount\n"
                         },
                         {
-                          "text": "Validated Billing Details have been populated correctly.\n"
+                          "text": "Calculated total: £116.45\n"
                         },
                         {
-                          "text": "Cash Payment Selected\n"
+                          "text": "Expected total value: £116.45, Actual total value: £116.45\n"
                         },
                         {
-                          "text": "Order Placed..\n"
-                        },
-                        {
-                          "text": "Attaching 'New Order' screenshot to report\n"
-                        },
-                        {
-                          "text": "New Order Number: 12560\n"
-                        },
-                        {
-                          "text": "Navigated to the Account Page\n"
-                        },
-                        {
-                          "text": "Navigated to All Orders on account page\n"
-                        },
-                        {
-                          "text": "Verified that the order numbers match from checkout page..\n"
-                        },
-                        {
-                          "text": "Expected order number: 12560, Actual order number: 12560\n"
-                        },
-                        {
-                          "text": "Attaching 'All Orders' screenshot to report\n"
-                        },
-                        {
-                          "text": "Navigated to the Cart Page\n"
+                          "text": "Attaching 'Cart Total' screenshot to report\n"
                         },
                         {
                           "text": "Check Cart Cleared\n"
@@ -197,22 +173,12 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2024-04-16T12:15:33.935Z",
+                      "startTime": "2024-04-16T12:32:11.639Z",
                       "attachments": [
                         {
-                          "name": "New Order",
+                          "name": "Cart Total",
                           "contentType": "image/png",
-                          "path": "C:\\Users\\AbidMiah\\source\\repos\\uk.co.nfocus.ecommerceplaywright\\test-results\\eCommerce-eCommerce-Tests-Checkout-Process-chrome-test\\attachments\\New-Order-be861da838cc963ba6f61ef103ba25134f1c8947.png"
-                        },
-                        {
-                          "name": "All Orders",
-                          "contentType": "image/png",
-                          "path": "C:\\Users\\AbidMiah\\source\\repos\\uk.co.nfocus.ecommerceplaywright\\test-results\\eCommerce-eCommerce-Tests-Checkout-Process-chrome-test\\attachments\\All-Orders-72b0a5eacbcc423f6decf15532bb116450372976.png"
-                        },
-                        {
-                          "name": "trace",
-                          "contentType": "application/zip",
-                          "path": "C:\\Users\\AbidMiah\\source\\repos\\uk.co.nfocus.ecommerceplaywright\\test-results\\eCommerce-eCommerce-Tests-Checkout-Process-chrome-test\\trace.zip"
+                          "path": "c:\\Users\\AbidMiah\\source\\repos\\uk.co.nfocus.ecommerceplaywright\\eCommerce-Automated-Tests-w-Playwright\\test-results\\eCommerce-eCommerce-Tests-Applying-Coupon---nfocus--chrome-test\\attachments\\Cart-Total-5f7e651e36926e7755b3aec0321db7e09bfd746a.png"
                         }
                       ]
                     }
@@ -220,13 +186,13 @@
                   "status": "expected"
                 }
               ],
-              "id": "568ae895ec11cac00796-9512d8e3086dbe8b7ea0",
+              "id": "568ae895ec11cac00796-f283b05998bbd54b585f",
               "file": "eCommerce.spec.ts",
-              "line": 38,
-              "column": 7
+              "line": 10,
+              "column": 9
             },
             {
-              "title": "Checkout Process",
+              "title": "Applying Coupon - 'edgewords'",
               "ok": true,
               "tags": [],
               "tests": [
@@ -234,13 +200,13 @@
                   "timeout": 30000,
                   "annotations": [],
                   "expectedStatus": "passed",
-                  "projectId": "firefox-test",
-                  "projectName": "firefox-test",
+                  "projectId": "chrome-test",
+                  "projectName": "chrome-test",
                   "results": [
                     {
-                      "workerIndex": 1,
+                      "workerIndex": 0,
                       "status": "passed",
-                      "duration": 20154,
+                      "duration": 12493,
                       "errors": [],
                       "stdout": [
                         {
@@ -271,43 +237,19 @@
                           "text": "Navigated to the Cart Page\n"
                         },
                         {
-                          "text": "Navigated to Checkout page\n"
+                          "text": "Valid Coupon Applied: 'edgewords'\n"
                         },
                         {
-                          "text": "Billing Details Populated..\n"
+                          "text": "Applied a 15% discount\n"
                         },
                         {
-                          "text": "Validated Billing Details have been populated correctly.\n"
+                          "text": "Calculated total: £131.45\n"
                         },
                         {
-                          "text": "Cash Payment Selected\n"
+                          "text": "Expected total value: £131.45, Actual total value: £131.45\n"
                         },
                         {
-                          "text": "Order Placed..\n"
-                        },
-                        {
-                          "text": "Attaching 'New Order' screenshot to report\n"
-                        },
-                        {
-                          "text": "New Order Number: 12561\n"
-                        },
-                        {
-                          "text": "Navigated to the Account Page\n"
-                        },
-                        {
-                          "text": "Navigated to All Orders on account page\n"
-                        },
-                        {
-                          "text": "Verified that the order numbers match from checkout page..\n"
-                        },
-                        {
-                          "text": "Expected order number: 12561, Actual order number: 12561\n"
-                        },
-                        {
-                          "text": "Attaching 'All Orders' screenshot to report\n"
-                        },
-                        {
-                          "text": "Navigated to the Cart Page\n"
+                          "text": "Attaching 'Cart Total' screenshot to report\n"
                         },
                         {
                           "text": "Check Cart Cleared\n"
@@ -324,22 +266,12 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2024-04-16T12:15:51.320Z",
+                      "startTime": "2024-04-16T12:32:24.160Z",
                       "attachments": [
                         {
-                          "name": "New Order",
+                          "name": "Cart Total",
                           "contentType": "image/png",
-                          "path": "C:\\Users\\AbidMiah\\source\\repos\\uk.co.nfocus.ecommerceplaywright\\test-results\\eCommerce-eCommerce-Tests-Checkout-Process-firefox-test\\attachments\\New-Order-18fb5871b36ba8ee1724933a84a04962e6d18198.png"
-                        },
-                        {
-                          "name": "All Orders",
-                          "contentType": "image/png",
-                          "path": "C:\\Users\\AbidMiah\\source\\repos\\uk.co.nfocus.ecommerceplaywright\\test-results\\eCommerce-eCommerce-Tests-Checkout-Process-firefox-test\\attachments\\All-Orders-209a3706dde384fb07027c2a0d651cd103fe6bf3.png"
-                        },
-                        {
-                          "name": "trace",
-                          "contentType": "application/zip",
-                          "path": "C:\\Users\\AbidMiah\\source\\repos\\uk.co.nfocus.ecommerceplaywright\\test-results\\eCommerce-eCommerce-Tests-Checkout-Process-firefox-test\\trace.zip"
+                          "path": "c:\\Users\\AbidMiah\\source\\repos\\uk.co.nfocus.ecommerceplaywright\\eCommerce-Automated-Tests-w-Playwright\\test-results\\eCommerce-eCommerce-Tests-Applying-Coupon---edgewords--chrome-test\\attachments\\Cart-Total-299043672d4a588c4e490d8eeb5ea5491de25e5d.png"
                         }
                       ]
                     }
@@ -347,137 +279,10 @@
                   "status": "expected"
                 }
               ],
-              "id": "568ae895ec11cac00796-148392dc1aa6412d387d",
+              "id": "568ae895ec11cac00796-04acfeb62b6105521e96",
               "file": "eCommerce.spec.ts",
-              "line": 38,
-              "column": 7
-            },
-            {
-              "title": "Checkout Process",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "webkit-test",
-                  "projectName": "webkit-test",
-                  "results": [
-                    {
-                      "workerIndex": 2,
-                      "status": "passed",
-                      "duration": 25459,
-                      "errors": [],
-                      "stdout": [
-                        {
-                          "text": "Succesfully Logged In\n"
-                        },
-                        {
-                          "text": "Navigated to the Shop Page\n"
-                        },
-                        {
-                          "text": "'Beanie' exists on the shop page..\n"
-                        },
-                        {
-                          "text": "Added to Cart\n"
-                        },
-                        {
-                          "text": "'Hoodie' exists on the shop page..\n"
-                        },
-                        {
-                          "text": "Added to Cart\n"
-                        },
-                        {
-                          "text": "'Sunglasses' exists on the shop page..\n"
-                        },
-                        {
-                          "text": "Added to Cart\n"
-                        },
-                        {
-                          "text": "Navigated to the Cart Page\n"
-                        },
-                        {
-                          "text": "Navigated to Checkout page\n"
-                        },
-                        {
-                          "text": "Billing Details Populated..\n"
-                        },
-                        {
-                          "text": "Validated Billing Details have been populated correctly.\n"
-                        },
-                        {
-                          "text": "Cash Payment Selected\n"
-                        },
-                        {
-                          "text": "Order Placed..\n"
-                        },
-                        {
-                          "text": "Attaching 'New Order' screenshot to report\n"
-                        },
-                        {
-                          "text": "New Order Number: 12562\n"
-                        },
-                        {
-                          "text": "Navigated to the Account Page\n"
-                        },
-                        {
-                          "text": "Navigated to All Orders on account page\n"
-                        },
-                        {
-                          "text": "Verified that the order numbers match from checkout page..\n"
-                        },
-                        {
-                          "text": "Expected order number: 12562, Actual order number: 12562\n"
-                        },
-                        {
-                          "text": "Attaching 'All Orders' screenshot to report\n"
-                        },
-                        {
-                          "text": "Navigated to the Cart Page\n"
-                        },
-                        {
-                          "text": "Check Cart Cleared\n"
-                        },
-                        {
-                          "text": "Navigated to the Account Page\n"
-                        },
-                        {
-                          "text": "Successfully Logged Out\n"
-                        },
-                        {
-                          "text": "Test Passed & Completed!\n"
-                        }
-                      ],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2024-04-16T12:16:16.697Z",
-                      "attachments": [
-                        {
-                          "name": "New Order",
-                          "contentType": "image/png",
-                          "path": "C:\\Users\\AbidMiah\\source\\repos\\uk.co.nfocus.ecommerceplaywright\\test-results\\eCommerce-eCommerce-Tests-Checkout-Process-webkit-test\\attachments\\New-Order-b778585823f2a571967ba5d2b9408bd478f0808a.png"
-                        },
-                        {
-                          "name": "All Orders",
-                          "contentType": "image/png",
-                          "path": "C:\\Users\\AbidMiah\\source\\repos\\uk.co.nfocus.ecommerceplaywright\\test-results\\eCommerce-eCommerce-Tests-Checkout-Process-webkit-test\\attachments\\All-Orders-3df1358ec5febd70d19e5b10dbe36a4384402019.png"
-                        },
-                        {
-                          "name": "trace",
-                          "contentType": "application/zip",
-                          "path": "C:\\Users\\AbidMiah\\source\\repos\\uk.co.nfocus.ecommerceplaywright\\test-results\\eCommerce-eCommerce-Tests-Checkout-Process-webkit-test\\trace.zip"
-                        }
-                      ]
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "568ae895ec11cac00796-c08a5670fe0f2e74d351",
-              "file": "eCommerce.spec.ts",
-              "line": 38,
-              "column": 7
+              "line": 10,
+              "column": 9
             }
           ]
         }
@@ -486,9 +291,9 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2024-04-16T12:15:33.230Z",
-    "duration": 69255.796,
-    "expected": 3,
+    "startTime": "2024-04-16T12:32:11.281Z",
+    "duration": 25385.175,
+    "expected": 2,
     "skipped": 0,
     "unexpected": 0,
     "flaky": 0
