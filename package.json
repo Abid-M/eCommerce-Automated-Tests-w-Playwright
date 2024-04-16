@@ -1,0 +1,17 @@
+{
+  "name": "uk.co.nfocus.ecommerceplaywright",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.42.1",
+    "@types/node": "^20.12.3"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5"
+  }
+}
