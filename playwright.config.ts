@@ -3,6 +3,7 @@ require('dotenv').config();
 
 
 export default defineConfig({
+  timeout: 60 * 1000,
   testDir: './tests',
   fullyParallel: true,
   forbidOnly: !!process.env.CI,

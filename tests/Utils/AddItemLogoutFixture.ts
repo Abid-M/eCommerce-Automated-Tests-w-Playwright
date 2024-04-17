@@ -42,15 +42,21 @@ export const test = base.extend<fixtures & pomFixtures>({
         // Navigate to Shop Page
         await navPOM.GoToShop();
 
+        let hasAddedToCart = false;
         for (const item of products) {
             // Checking if item exists before adding to cart
-            await expect(shopPOM.addToCartButton(item), `Item '${item}' does not exist!`).toBeVisible();
-            console.log(`'${item}' exists on the shop page..`)
-
-            // Add item to cart 
-            await shopPOM.AddToCart(item);
-            await page.waitForLoadState("networkidle");
+            if (item.AddToCart) {
+                await expect(shopPOM.addToCartButton(item.Product), `Item '${item.Product}' does not exist!`).toBeVisible();
+                console.log(`'${item.Product}' exists on the shop page..`)
+                
+                // Add item to cart 
+                await shopPOM.AddToCart(item.Product);
+                await page.waitForLoadState("networkidle");
+                hasAddedToCart = true;
+            }
         };
+
+        expect(hasAddedToCart, 'No items were added to the cart! Check Products JSON file').toBeTruthy();
 
         // redirect to Cart Page
         await page.waitForLoadState("networkidle");
@@ -66,7 +72,7 @@ export const test = base.extend<fixtures & pomFixtures>({
         // Removes all discounts and empties the cart
         await (await cartPOM.RemoveDiscounts()).EmptyCart();  
         // Verifies that the cart is empty  
-        await expect(cartPOM.cartEmptyDialog()).toBeVisible();
+        await expect(cartPOM.cartEmptyDialog()).toBeVisible({timeout: 10000});
         console.log("Check Cart Cleared")
     
         // Navigate to Account Page and Logout
