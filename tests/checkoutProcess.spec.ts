@@ -1,4 +1,4 @@
-import { test, expect } from "./Utils/AddItemLogoutFixture";
+import { test, expect } from "./Utils/Fixtures";
 import Customer from "./Utils/Customer";
 import billingDetails from "./JSONData/BillingDetails.json"
 

@@ -1,4 +1,4 @@
-import { test, expect } from "./Utils/AddItemLogoutFixture";
+import { test, expect } from "./Utils/Fixtures";
 import couponData from "./JSONData/CouponCodes.json"
 
 couponData.forEach(coupon => {
@@ -10,13 +10,13 @@ couponData.forEach(coupon => {
 
       const expectedDiscount = coupon.discount; // Expected Discount of 25% for nfocus. 15% for edgewords
       const actualDiscount = await cartPOM.GetDiscountPercentage(coupon.code); // Calculates actual discount
-      await expect(actualDiscount, `Expected ${expectedDiscount}% off, Actual ${actualDiscount}% off instead`).toBe(expectedDiscount);
+      expect(actualDiscount, `Expected ${expectedDiscount}% off, Actual ${actualDiscount}% off instead`).toBe(expectedDiscount);
 
       const calculatedTotal = await cartPOM.CalculateTotal(coupon.code);
       const grandTotalPrice = await cartPOM.GetGrandTotalPrice();
 
       // Validates that the discount has been applied correctly with the total price
-      await expect(grandTotalPrice, "Discount not applied correctly!").toBe(calculatedTotal);
+      expect(grandTotalPrice, "Discount not applied correctly!").toBe(calculatedTotal);
       console.log(`Expected total value: £${grandTotalPrice}, Actual total value: £${calculatedTotal}`);
 
       // Wait for js scripts on page to finish before screenshotting element

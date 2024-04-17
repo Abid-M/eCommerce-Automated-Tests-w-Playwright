@@ -65,7 +65,7 @@ export const test = base.extend<fixtures & pomFixtures>({
         await use(addItemLogoutFix);
 
         // Navigates to Cart page if not in current url
-        if (await !page.url().includes("cart")) {
+        if (!page.url().includes("cart")) {
           await navPOM.GoToCart();
         }
     
@@ -81,7 +81,7 @@ export const test = base.extend<fixtures & pomFixtures>({
         await accountPOM.Logout();
     
         // Verifies logged out if 'login' text on page
-        await expect(page.getByText("Login"), "Logout Failed").toBeVisible();
+        await expect(await accountPOM.loginText(), "Logout Failed").toBeVisible();
         console.log("Successfully Logged Out")
         console.log("Test Passed & Completed!")
     },

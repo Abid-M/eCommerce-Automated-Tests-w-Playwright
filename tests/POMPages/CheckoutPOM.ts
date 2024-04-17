@@ -55,13 +55,13 @@ class CheckoutPOM {
             mismatch.push(`Expected City to be '${customer.city}' but got '${await this.cityField().inputValue()}'`)
 
         if (customer.postcode !== await this.postcodeField().inputValue())
-            mismatch.push(`Expected Postoce to be '${customer.postcode}' but got '${await this.postcodeField().inputValue()}'`)
+            mismatch.push(`Expected Postcode to be '${customer.postcode}' but got '${await this.postcodeField().inputValue()}'`)
         
         if (customer.phoneNumber !== await this.phoneField().inputValue())
             mismatch.push(`Expected Phone Number to be '${customer.phoneNumber}' but got '${await this.phoneField().inputValue()}'`)
         
         if (customer.email !== await this.emailField().inputValue())
-            mismatch.push(`Expected Emai to be '${customer.email}' but got '${await this.emailField().inputValue()}'`)
+            mismatch.push(`Expected Email to be '${customer.email}' but got '${await this.emailField().inputValue()}'`)
 
         // Join all invalid inputs into a string, comma seperation
         return mismatch.join(", ");

@@ -12,6 +12,7 @@ class MyAccountPOM {
     logoutLink = () => this.page.getByRole('link', { name: 'Logout' });
     ordersLink = () => this.page.getByRole('link', { name: 'Orders' });
     nFocusHeader = () => this.page.getByRole("link", { name: 'nFocus Shop' });
+    loginText = () => this.page.getByText("Login");
 
     async Logout() {
         await this.logoutLink().click();
