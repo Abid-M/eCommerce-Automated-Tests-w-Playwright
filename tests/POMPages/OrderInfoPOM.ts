@@ -12,9 +12,10 @@ class OrderInfoPOM {
 
     /* Gets the order number from the order confirmation page. */
     async GetOrderNumber() {
-        console.log(`New Order Number: ${await this.orderNumber().textContent()}`)
+        const orderNum = await this.orderNumber().textContent();
+        console.log(`New Order Number: ${orderNum}`)
 
-        return await this.orderNumber().textContent();
+        return orderNum;
     }
 }
 

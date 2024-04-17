@@ -46,7 +46,7 @@ test("Checkout Process", async ({ page, addItemLogoutFix, cartPOM, checkoutPOM, 
     // Capture order number on All Orders Page
     const orderNumCheck = await allOrdersPOM.GetLatestOrder();
 
-    await expect(orderNumCheck, `Order numbers do not match! ${orderNumCheck} with ${newOrderNum}`).toEqual(newOrderNum);
+    expect(orderNumCheck, `Order numbers do not match! ${orderNumCheck} with ${newOrderNum}`).toEqual(newOrderNum);
     console.log("Verified that the order numbers match from checkout page..");
     console.log(`Expected order number: ${orderNumCheck}, Actual order number: ${newOrderNum}`);
 
