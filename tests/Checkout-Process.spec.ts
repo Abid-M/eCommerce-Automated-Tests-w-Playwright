@@ -3,7 +3,7 @@ import Customer from "./Utils/Customer";
 import billingDetails from "./JSONData/BillingDetails.json"
 import { AllOrdersPOM, CheckoutPOM, OrderInfoPOM } from "./POMPages";
 
-test("Checkout Process", async ({ page, addItemLogoutFix, cartPOM, navPOM }, testInfo) => {
+test("Checkout Process", async ({ page, LoginAddItemLogout, cartPOM, navPOM }, testInfo) => {
     // Navigate to Checkout
     const checkout: CheckoutPOM = await cartPOM.GoToCheckout();
 

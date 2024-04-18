@@ -5,7 +5,7 @@ import products from "../JSONData/Products.json"
 // Declaring types of fixtures ( for type arguments)
 type fixtures = {
     // Setup/Teardown
-    addItemLogoutFix: any;
+    LoginAddItemLogout: any;
 }
 
 type pomFixtures = {
@@ -16,7 +16,7 @@ type pomFixtures = {
 }
 
 export const test = base.extend<fixtures & pomFixtures>({
-    addItemLogoutFix: async({page, navPOM, loginPOM}, use) => {
+    LoginAddItemLogout: async({page, navPOM, loginPOM}, use) => {
         const addItemLogoutFix = undefined;
         
         // Navigates and validates eCommerce site
