@@ -42,7 +42,7 @@ class CartPOM {
     }
 
     /* Clears and sets the value coupon from argument value. */
-    async EnterCoupon(coupon : string) {
+    async EnterCoupon(coupon: string) {
         await this.couponCodeField().fill(coupon);
         return this;
     }
@@ -53,31 +53,31 @@ class CartPOM {
     }
 
     /* Gets the subtotal price from the cart page. */
-    async GetSubtotalPrice() : Promise<number>{
+    async GetSubtotalPrice(): Promise<number>{
         const subtotal = await this.subtotalPrice().textContent();
         return Number(subtotal?.replace("£", ""));
     }
 
     /* Gets the shipping price from the cart page. */
-    async GetShippingPrice() : Promise<number> {
+    async GetShippingPrice(): Promise<number> {
         const shipping = await this.shippingPrice().textContent();
         return Number(shipping?.replace("£", ""));
     }
 
     /* Gets the grand total price from the cart page. */
-    async GetGrandTotalPrice() : Promise<number> {
+    async GetGrandTotalPrice(): Promise<number> {
         const grandTotal = await this.grandTotalPrice().textContent();
         return Number(grandTotal?.replace("£", ""));
     }
 
     /* Gets the coupon discount from the cart page. */
-    async GetCouponDiscount(couponCode : string) : Promise<number> {
+    async GetCouponDiscount(couponCode: string): Promise<number> {
         const couponDiscount = await this.couponDiscount(couponCode).textContent();
         return Number(couponDiscount?.replace("£", ""));
     }
 
     /* Gets the coupon discount percentage. */
-    async GetDiscountPercentage(couponCode : string) : Promise<number> {
+    async GetDiscountPercentage(couponCode: string): Promise<number> {
         const discountPercentage = await this.GetCouponDiscount(couponCode) / await this.GetSubtotalPrice() * 100;
         console.log(`Applied a ${discountPercentage}% discount`)
 
@@ -85,7 +85,7 @@ class CartPOM {
     }
 
     /* Validates that the calculated total matches the grand total price. */
-    async CalculateTotal(couponCode : string) : Promise<number> {
+    async CalculateTotal(couponCode: string): Promise<number> {
         let checkTotal = await this.GetSubtotalPrice() - await this.GetCouponDiscount(couponCode) + await this.GetShippingPrice();
         console.log(`Calculated total: £${checkTotal}`)
 
@@ -99,7 +99,7 @@ class CartPOM {
     }
 
     /* Removes all coupon discounts added to cart */
-    async RemoveDiscounts() : Promise<CartPOM> {
+    async RemoveDiscounts(): Promise<CartPOM> {
         //await this.page.waitForLoadState("networkidle"); 
         const removeLink = await this.removeDiscountButton().all();
 
