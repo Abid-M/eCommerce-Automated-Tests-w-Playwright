@@ -36,13 +36,13 @@ export const test = base.extend<fixtures & pomFixtures>({
         
         // Validates login
         const loggedIn : boolean = await loginPOM.ValidLogin(email, password);
-        await expect(loggedIn, "Login Failed!").toBeTruthy();
+        expect(loggedIn, "Login Failed!").toBeTruthy();
         console.log("Succesfully Logged In")
     
         // Navigate to Shop Page
         await navPOM.GoToShop();
 
-        let hasAddedToCart = false;
+        let addedItems : string [] = []
         for (const item of products) {
             // Checking if item exists before adding to cart
             if (item.AddToCart) {
@@ -51,17 +51,23 @@ export const test = base.extend<fixtures & pomFixtures>({
                 
                 // Add item to cart 
                 await shopPOM.AddToCart(item.Product);
+                await addedItems.push(item.Product);
                 await page.waitForLoadState("networkidle");
-                hasAddedToCart = true;
             }
         };
 
-        expect(hasAddedToCart, 'No items were added to the cart! Check Products JSON file').toBeTruthy();
-
+        expect(addedItems, 'No items were added to the cart! Check Products JSON file').not.toHaveLength(0);
+        
         // redirect to Cart Page
         await page.waitForLoadState("networkidle");
         await shopPOM.GoToCart();
-    
+
+        // Verifies items are actually in the cart
+        for (const item of addedItems) {
+            await expect(cartPOM.cartItems()).toHaveText(item);
+            console.log(`Verified that the '${item}' is in the cart`)
+        }
+
         await use(addItemLogoutFix);
 
         // Navigates to Cart page if not in current url

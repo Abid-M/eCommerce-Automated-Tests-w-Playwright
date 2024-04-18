@@ -8,7 +8,7 @@ class CartPOM {
     }
 
     // Locators
-    cartItems = () => this.page.locator("td.product-name a").all(); //Collates all items in the cart (Tests for multiple items in cart)
+    cartItems = () => this.page.locator("td.product-name a"); //Collates all items in the cart (Tests for multiple items in cart)
     couponCodeField = () => this.page.getByPlaceholder('Coupon code');
     applyCouponButton = () => this.page.getByRole('button', { name: 'Apply coupon' });
     alertMessage = () => this.page.getByRole('alert');
@@ -22,24 +22,6 @@ class CartPOM {
     shippingPrice = () => this.page.locator("Label > span > bdi");
     grandTotalPrice = () => this.page.locator(".order-total > td");
     couponDiscount = (couponCode : string) => this.page.locator(`[data-title='Coupon: ${couponCode}'] .amount`);
-
-
-    /* Checks if the specified item is in the cart. */
-    async CheckItemInCart(item: string) : Promise<boolean> {
-        for (const product of await this.cartItems()) {
-            const productName = await product.textContent();
-                
-            // Check if the item's text matches the specified name (case-insensitive)
-            if (productName?.toLowerCase() === item.toLowerCase()) {
-                // If a match is found, console log and return true
-                console.log(`Verified that the '${item}' is in the cart`); 
-                return true;
-            }
-        }
-
-        // If no match is found, return false
-        return false;
-    }
 
     /* Clears and sets the value coupon from argument value. */
     async EnterCoupon(coupon: string) {
