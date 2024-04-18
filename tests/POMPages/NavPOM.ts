@@ -1,4 +1,6 @@
 import { Page } from "@playwright/test";
+import MyAccountPOM from "./MyAccountPOM";
+import ShopPOM from "./ShopPOM";
 
 class NavPOM {
     page: Page;
@@ -17,6 +19,8 @@ class NavPOM {
     async GoToShop() {
         await this.shopLink().click();
         console.log("Navigated to the Shop Page")
+
+        return new ShopPOM(this.page);
     }
 
     /* Navigates to the cart page. */
@@ -29,6 +33,8 @@ class NavPOM {
     async GoToAccount() {
         await this.accountLink().click();
         console.log("Navigated to the Account Page")
+
+        return new MyAccountPOM(this.page);
     }
 
     /* Clicks the "Dismiss" link in the blue banner, if it is present. */

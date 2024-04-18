@@ -1,4 +1,5 @@
 import { Page } from "@playwright/test";
+import CheckoutPOM from "./CheckoutPOM";
 
 class CartPOM {
     page: Page;
@@ -78,6 +79,8 @@ class CartPOM {
     async GoToCheckout() {
         await this.checkoutLink().click();
         console.log("Navigated to Checkout page")
+
+        return new CheckoutPOM(this.page);
     }
 
     /* Removes all coupon discounts added to cart */

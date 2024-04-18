@@ -1,10 +1,11 @@
 import { test, expect } from "./Utils/Fixtures";
 import Customer from "./Utils/Customer";
 import billingDetails from "./JSONData/BillingDetails.json"
+import { AllOrdersPOM, CheckoutPOM, OrderInfoPOM } from "./POMPages";
 
-test("Checkout Process", async ({ page, addItemLogoutFix, cartPOM, checkoutPOM, orderInfoPOM, navPOM, accountPOM, allOrdersPOM }, testInfo) => {
+test("Checkout Process", async ({ page, addItemLogoutFix, cartPOM, navPOM }, testInfo) => {
     // Navigate to Checkout
-    await cartPOM.GoToCheckout();
+    const checkout: CheckoutPOM = await cartPOM.GoToCheckout();
 
     // Create customer object to use to populate billing fields
     const customerInfo = new Customer(billingDetails.fName,
@@ -16,16 +17,16 @@ test("Checkout Process", async ({ page, addItemLogoutFix, cartPOM, checkoutPOM, 
                                       billingDetails.email);
 
     // Fill in Billing Input Fields with customer object
-    await checkoutPOM.FillInBillingDetails(customerInfo);
+    await checkout.FillInBillingDetails(customerInfo);
     // Validate billing fields have been entered with customer details
-    const mismatch = checkoutPOM.ValidateDetails(customerInfo);
+    const mismatch = checkout.ValidateDetails(customerInfo);
 
     await expect(mismatch, `Billing input fields mismatch.`).resolves.toBe('');
     console.log("Validated Billing Details have been populated correctly.");
 
     // Selects payment and places the order
     const paymentMethod: string = "Cheque";
-    await (await checkoutPOM.SelectPayment(paymentMethod)).PlaceOrder();
+    const orderRecieved : OrderInfoPOM = await (await checkout.SelectPayment(paymentMethod)).PlaceOrder();
 
     // Take screenshot of the new Order
     await page.waitForURL(/order-received/); // wait until page navigates
@@ -37,14 +38,13 @@ test("Checkout Process", async ({ page, addItemLogoutFix, cartPOM, checkoutPOM, 
     await testInfo.attach('New Order', { path: `./Screenshots/New Order, ${date}.png` });
 
     // Captures the new order number
-    const newOrderNum = await orderInfoPOM.GetOrderNumber();
+    const newOrderNum = await orderRecieved.GetOrderNumber();
 
     // Navigate to all orders page from account
-    await navPOM.GoToAccount();
-    await accountPOM.GoToOrders();
+    const allOrders : AllOrdersPOM = await (await navPOM.GoToAccount()).GoToOrders();
 
     // Capture order number on All Orders Page
-    const orderNumCheck = await allOrdersPOM.GetLatestOrder();
+    const orderNumCheck = await allOrders.GetLatestOrder();
 
     expect(orderNumCheck, `Order numbers do not match! ${orderNumCheck} with ${newOrderNum}`).toEqual(newOrderNum);
     console.log("Verified that the order numbers match from checkout page..");
@@ -54,7 +54,7 @@ test("Checkout Process", async ({ page, addItemLogoutFix, cartPOM, checkoutPOM, 
     date = new Date().toLocaleString();
     date = date.split("/").join("-").split(":").join("-");
 
-    await allOrdersPOM.orderTable().screenshot({
+    await allOrders.orderTable().screenshot({
       path: `./Screenshots/All Orders, ${date}.png`,
       mask: [page.locator('tbody tr').nth(0)],
       maskColor: 'rgba(201, 242, 155, 0.5)',

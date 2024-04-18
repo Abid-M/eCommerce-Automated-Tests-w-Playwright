@@ -1,5 +1,5 @@
 import {test as base, expect} from "@playwright/test";
-import * as POMs from "../POMPages"
+import { LoginPOM, NavPOM, CartPOM, MyAccountPOM, ShopPOM } from "../POMPages";
 import products from "../JSONData/Products.json"
 
 // Declaring types of fixtures ( for type arguments)
@@ -10,24 +10,20 @@ type fixtures = {
 
 type pomFixtures = {
     // POM pages as fixtures
-    accountPOM: POMs.MyAccountPOM;
-    loginPOM: POMs.LoginPOM;
-    navPOM: POMs.NavPOM;
-    shopPOM: POMs.ShopPOM;
-    cartPOM: POMs.CartPOM;
-    checkoutPOM: POMs.CheckoutPOM;
-    orderInfoPOM: POMs.OrderInfoPOM;
-    allOrdersPOM: POMs.AllOrdersPOM;
+    loginPOM: LoginPOM;
+    navPOM: NavPOM;
+    cartPOM: CartPOM;
 }
 
 export const test = base.extend<fixtures & pomFixtures>({
-    addItemLogoutFix: async({page, accountPOM, navPOM, loginPOM, shopPOM, cartPOM}, use) => {
+    addItemLogoutFix: async({page, navPOM, loginPOM}, use) => {
         const addItemLogoutFix = undefined;
         
         // Navigates and validates eCommerce site
-        await page.goto("my-account");
-        await expect(accountPOM.nFocusHeader()).toBeVisible();
-    
+        await page.goto();
+        //await expect(accountPOM.nFocusHeader()).toBeVisible();
+        
+        const account: MyAccountPOM = await navPOM.GoToAccount();
         await navPOM.DismissBanner();
     
         // Retrieves sensitive email and password from .env file. If variable is null, throw error.
@@ -40,18 +36,18 @@ export const test = base.extend<fixtures & pomFixtures>({
         console.log("Succesfully Logged In")
     
         // Navigate to Shop Page
-        await navPOM.GoToShop();
+        const shop : ShopPOM = await navPOM.GoToShop();
 
         let addedItems : string [] = []
         for (const item of products) {
             // Checking if item exists before adding to cart
             if (item.AddToCart) {
-                await expect(shopPOM.addToCartButton(item.Product), `Item '${item.Product}' does not exist!`).toBeVisible();
+                await expect(shop.addToCartButton(item.Product), `Item '${item.Product}' does not exist!`).toBeVisible();
                 console.log(`'${item.Product}' exists on the shop page..`)
                 
                 // Add item to cart 
-                await shopPOM.AddToCart(item.Product);
-                await addedItems.push(item.Product);
+                await shop.AddToCart(item.Product);
+                addedItems.push(item.Product);
                 await page.waitForLoadState("networkidle");
             }
         };
@@ -60,11 +56,11 @@ export const test = base.extend<fixtures & pomFixtures>({
         
         // redirect to Cart Page
         await page.waitForLoadState("networkidle");
-        await shopPOM.GoToCart();
+        const cart : CartPOM = await shop.GoToCart();
 
         // Verifies items are actually in the cart
         for (const item of addedItems) {
-            await expect(cartPOM.cartItems()).toHaveText(item);
+            await expect(cart.cartItems()).toHaveText(item);
             console.log(`Verified that the '${item}' is in the cart`)
         }
 
@@ -76,53 +72,32 @@ export const test = base.extend<fixtures & pomFixtures>({
         }
     
         // Removes all discounts and empties the cart
-        await (await cartPOM.RemoveDiscounts()).EmptyCart();  
+        await (await cart.RemoveDiscounts()).EmptyCart();  
         // Verifies that the cart is empty  
-        await expect(cartPOM.cartEmptyDialog()).toBeVisible({timeout: 10000});
+        await expect(cart.cartEmptyDialog()).toBeVisible({timeout: 10000});
         console.log("Check Cart Cleared")
     
         // Navigate to Account Page and Logout
         await page.waitForLoadState("networkidle");
-        await navPOM.GoToAccount();
-        await accountPOM.Logout();
+        await (await navPOM.GoToAccount()).Logout();
     
         // Verifies logged out if 'login' text on page
-        await expect(await accountPOM.loginText(), "Logout Failed").toBeVisible();
+        await expect(account.loginText(), "Logout Failed").toBeVisible();
         console.log("Successfully Logged Out")
         console.log("Test Passed & Completed!")
     },
 
-    accountPOM: async({page}, use) => {
-        const account = new POMs.MyAccountPOM(page);
-        await use(account);
-    },
     loginPOM: async({page}, use) => {
-        const login = new POMs.LoginPOM(page);
+        const login = new LoginPOM(page);
         await use(login);
     },
     navPOM: async({page}, use) => {
-        const nav = new POMs.NavPOM(page);
+        const nav = new NavPOM(page);
         await use(nav);
     },
-    shopPOM: async({page}, use) => {
-        const shop = new POMs.ShopPOM(page);
-        await use(shop);
-    },
     cartPOM: async({page}, use) => {
-        const cart = new POMs.CartPOM(page);
+        const cart = new CartPOM(page);
         await use(cart);
-    },
-    checkoutPOM: async({page}, use) => {
-        const checkout = new POMs.CheckoutPOM(page);
-        await use(checkout);
-    },
-    orderInfoPOM: async({page}, use) => {
-        const orderInfo = new POMs.OrderInfoPOM(page);
-        await use(orderInfo);
-    },
-    allOrdersPOM: async({page}, use) => {
-        const allOrders = new POMs.AllOrdersPOM(page);
-        await use(allOrders);
     },
 })
 

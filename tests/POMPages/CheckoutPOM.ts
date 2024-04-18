@@ -1,5 +1,6 @@
 import { Page } from "@playwright/test";
 import Customer from "../Utils/Customer";
+import OrderInfoPOM from "./OrderInfoPOM";
 
 class CheckoutPOM {
     page: Page;
@@ -82,9 +83,11 @@ class CheckoutPOM {
     }
 
     /* Places the order by clicking on the place order button. */
-    async PlaceOrder() {
+    async PlaceOrder(){
         await this.placeOrderButton().click();
         console.log("Order Placed..");
+
+        return new OrderInfoPOM(this.page);
     }
 }
 

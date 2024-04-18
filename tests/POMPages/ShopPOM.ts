@@ -1,4 +1,5 @@
 import { Page } from "@playwright/test";
+import CartPOM from "./CartPOM";
 
 class ShopPOM {
     page: Page;
@@ -25,7 +26,9 @@ class ShopPOM {
     /* Navigates to the cart page. */
     async GoToCart() {
         await this.viewCartButton().first().click();
-        console.log("Navigated to the Cart Page")
+        console.log("Navigated to the Cart Page");
+
+        return new CartPOM(this.page);
     }
 }
 
