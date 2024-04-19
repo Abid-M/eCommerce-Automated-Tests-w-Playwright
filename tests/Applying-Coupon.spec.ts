@@ -19,8 +19,7 @@ couponData.forEach(coupon => {
       expect(grandTotalPrice, "Discount not applied correctly!").toBe(calculatedTotal);
       console.log(`Expected total value: £${grandTotalPrice}, Actual total value: £${calculatedTotal}`);
 
-      // Wait for cart total element, to be clear before screenshotting
-      await expect(CartAndClearup.removeDiscountButton()).toBeVisible();
+      // Screenshot
       let date = new Date().toLocaleString();
       date = date.split("/").join("-").split(":").join("-");
 

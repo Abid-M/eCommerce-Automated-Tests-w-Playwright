@@ -1,7 +1,7 @@
 import { test, expect } from "./Utils/Fixtures";
 import Customer from "./Utils/Customer";
 import billingDetails from "./Data/BillingDetails.json"
-import { AllOrdersPOM, CheckoutPOM } from "./POMPages";
+import { AllOrdersPOM, CheckoutPOM, MyAccountPOM } from "./POMPages";
 
 test("Checkout Process", async ({ page, CartAndClearup, navPOM }, testInfo) => {
     // Navigate to Checkout
@@ -21,11 +21,11 @@ test("Checkout Process", async ({ page, CartAndClearup, navPOM }, testInfo) => {
     // Validate billing fields have been entered with customer details
     const mismatch = checkout.ValidateDetails(customerInfo);
 
-    await expect(mismatch, `Billing input fields mismatch.`).resolves.toBe('');
-    console.log("Validated Billing Details have been populated correctly.");
+    await expect(mismatch, `Expected billing input fields to match`).resolves.toBe('');
+    console.log("Validated Billing Details have been populated correctly");
 
     // Selects payment and places the order
-    const paymentMethod = "Cheque";
+    const paymentMethod = "Cheque"; //or Cash
 
     await checkout.SelectPayment(paymentMethod);
     const orderRecieved = await checkout.PlaceOrder();
@@ -43,14 +43,14 @@ test("Checkout Process", async ({ page, CartAndClearup, navPOM }, testInfo) => {
     const newOrderNum = await orderRecieved.GetOrderNumber();
 
     // Navigate to all orders page from account
-    const allOrders: AllOrdersPOM = await (await navPOM.GoToAccount()).GoToOrders();
+    const account: MyAccountPOM = await navPOM.GoToAccount();
+    const allOrders: AllOrdersPOM = await account.GoToOrders();
 
     // Capture order number on All Orders Page
     const orderNumCheck = await allOrders.GetLatestOrder();
 
-    expect(orderNumCheck, `Order numbers do not match! ${orderNumCheck} with ${newOrderNum}`).toEqual(newOrderNum);
+    expect(orderNumCheck, `Expected order number: ${orderNumCheck}, Actual order number: ${newOrderNum}`).toEqual(newOrderNum);
     console.log("Verified that the order numbers match from checkout page..");
-    console.log(`Expected order number: ${orderNumCheck}, Actual order number: ${newOrderNum}`);
 
     // Takes screenshot of all orders table, highlighted the latest with the datetime
     date = new Date().toLocaleString();
