@@ -1,0 +1,50 @@
+[
+    {
+        "ProductName": "Beanie",
+        "AddToCart" : false
+    },
+    {
+        "ProductName": "Belt",
+        "AddToCart" : true
+    },
+    {
+        "ProductName": "Cadp",
+        "AddToCart" : true
+    },
+    {
+        "ProductName": "Hoodie",
+        "AddToCart" : true
+    },
+    {
+        "ProductName": "Hoodie with Logo",
+        "AddToCart" : false
+    },
+    {
+        "ProductName": "Hoodie with Pocket",
+        "AddToCart" : false
+    },
+    {
+        "ProductName": "Hoodie with Zipper",
+        "AddToCart" : false
+    },
+    {
+        "ProductName": "Long Sleeve Tee",
+        "AddToCart" : false
+    },
+    {
+        "ProductName": "Polo",
+        "AddToCart" : false
+    },
+    {
+        "ProductName": "Sunglasses",
+        "AddToCart" : false
+    },
+    {
+        "ProductName": "Tshirt",
+        "AddToCart" : false
+    },
+    {
+        "ProductName": "Vneck Tshirt",
+        "AddToCart" : false
+    }
+]

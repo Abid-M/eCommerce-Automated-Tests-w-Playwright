@@ -69,7 +69,7 @@ class CheckoutPOM {
     }
 
     /* Selects the payment method for checkout (check or cash). */
-    async SelectPayment(paymentMethod: string): Promise<CheckoutPOM> {
+    async SelectPayment(paymentMethod: string) {
         if (paymentMethod === "Cash") {
             await this.cashPaymentButton().click();
             console.log("Cash Payment Selected")
@@ -78,8 +78,6 @@ class CheckoutPOM {
             await this.chequePaymentButton().click();
             console.log("Cheque Payment Selected")
         }
-
-        return this;
     }
 
     /* Places the order by clicking on the place order button. */

@@ -1,107 +1,84 @@
-import {test as base, expect} from "@playwright/test";
+import { test as base, expect } from "@playwright/test";
 import { LoginPOM, NavPOM, CartPOM, MyAccountPOM, ShopPOM } from "../POMPages";
-import products from "../JSONData/Products.json"
 
 // Declaring types of fixtures ( for type arguments)
 type fixtures = {
-    // Setup/Teardown
-    LoginAddItemLogout: any;
+    loggedInAccountPage: MyAccountPOM;
+    CartAndClearup: CartPOM;
 }
 
 type pomFixtures = {
     // POM pages as fixtures
-    loginPOM: LoginPOM;
     navPOM: NavPOM;
-    cartPOM: CartPOM;
 }
 
 export const test = base.extend<fixtures & pomFixtures>({
-    LoginAddItemLogout: async({page, navPOM, loginPOM}, use) => {
-        const addItemLogoutFix = undefined;
-        
+    loggedInAccountPage: async ({ page, navPOM }, use) => {
         // Navigates and validates eCommerce site
-        await page.goto();
-        //await expect(accountPOM.nFocusHeader()).toBeVisible();
-        
+        await page.goto('');
+
         const account: MyAccountPOM = await navPOM.GoToAccount();
+        await expect(account.nFocusHeader()).toBeVisible();
         await navPOM.DismissBanner();
-    
+
         // Retrieves sensitive email and password from .env file. If variable is null, throw error.
         const email: string = process.env.EMAIL ?? (() => { throw new Error("USERNAME env variable is not set"); })();
-        const password: string = process.env.PASSWORD ?? (() => { throw new Error("PASSWORD env variable is not set"); })();;
-        
+        const password: string = process.env.PASSWORD ?? (() => { throw new Error("PASSWORD env variable is not set"); })();
+
         // Validates login
-        const loggedIn : boolean = await loginPOM.ValidLogin(email, password);
-        expect(loggedIn, "Login Failed!").toBeTruthy();
+        const login = new LoginPOM(page);
+        expect(await login.ValidLogin(email, password), "Should be logged in").toBeTruthy();
         console.log("Succesfully Logged In")
-    
+
+        await use(account);
+    },
+
+    CartAndClearup: async ({ page, navPOM, loggedInAccountPage }, use) => {
         // Navigate to Shop Page
-        const shop : ShopPOM = await navPOM.GoToShop();
+        const shop: ShopPOM = await navPOM.GoToShop();
 
-        let addedItems : string [] = []
-        for (const item of products) {
-            // Checking if item exists before adding to cart
-            if (item.AddToCart) {
-                await expect(shop.addToCartButton(item.Product), `Item '${item.Product}' does not exist!`).toBeVisible();
-                console.log(`'${item.Product}' exists on the shop page..`)
-                
-                // Add item to cart 
-                await shop.AddToCart(item.Product);
-                addedItems.push(item.Product);
-                await page.waitForLoadState("networkidle");
-            }
-        };
+        // Checks to see if products exists from json file 
+        // Set Products in JSON 
+        let itemsExists: Promise<string> = shop.checkItemsExists();
+        console.log(itemsExists);
+        await expect.soft(itemsExists).resolves.toBe("All Items from data file exists");
 
-        expect(addedItems, 'No items were added to the cart! Check Products JSON file').not.toHaveLength(0);
-        
+        const addedItems = await shop.AddToCart();
+        expect(addedItems, 'Items should have been added to Cart, Check Products JSON file').not.toHaveLength(0);
+
         // redirect to Cart Page
-        await page.waitForLoadState("networkidle");
-        const cart : CartPOM = await shop.GoToCart();
-
+        const cart: CartPOM = await shop.GoToCart();
         // Verifies items are actually in the cart
-        for (const item of addedItems) {
-            await expect(cart.cartItems()).toHaveText(item);
-            console.log(`Verified that the '${item}' is in the cart`)
-        }
+        cart.CheckItemInCart(addedItems);
 
-        await use(addItemLogoutFix);
+        await use(cart);
 
-        // Navigates to Cart page if not in current url
+        // Teardown Clearup
         if (!page.url().includes("cart")) {
           await navPOM.GoToCart();
         }
-    
+
         // Removes all discounts and empties the cart
-        await (await cart.RemoveDiscounts()).EmptyCart();  
+        await cart.EmptyCart();
         // Verifies that the cart is empty  
-        await expect(cart.cartEmptyDialog()).toBeVisible({timeout: 10000});
+        await expect(cart.cartEmptyDialog()).toBeVisible();
         console.log("Check Cart Cleared")
-    
+
         // Navigate to Account Page and Logout
-        await page.waitForLoadState("networkidle");
-        await (await navPOM.GoToAccount()).Logout();
-    
+        await navPOM.GoToAccount();
+        await loggedInAccountPage.Logout();
+
         // Verifies logged out if 'login' text on page
-        await expect(account.loginText(), "Logout Failed").toBeVisible();
+        await expect(loggedInAccountPage.loginText(), "Should be logged out").toBeVisible();
         console.log("Successfully Logged Out")
-        console.log("Test Passed & Completed!")
+
+        await loggedInAccountPage.page.close();
     },
 
-    loginPOM: async({page}, use) => {
-        const login = new LoginPOM(page);
-        await use(login);
-    },
-    navPOM: async({page}, use) => {
+    navPOM: async ({ page }, use) => {
         const nav = new NavPOM(page);
         await use(nav);
-    },
-    cartPOM: async({page}, use) => {
-        const cart = new CartPOM(page);
-        await use(cart);
     },
 })
 
 export { expect } from '@playwright/test';
-
-
-  

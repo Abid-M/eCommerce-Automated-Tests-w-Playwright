@@ -1,11 +1,11 @@
 import { test, expect } from "./Utils/Fixtures";
 import Customer from "./Utils/Customer";
-import billingDetails from "./JSONData/BillingDetails.json"
-import { AllOrdersPOM, CheckoutPOM, OrderInfoPOM } from "./POMPages";
+import billingDetails from "./Data/BillingDetails.json"
+import { AllOrdersPOM, CheckoutPOM } from "./POMPages";
 
-test("Checkout Process", async ({ page, LoginAddItemLogout, cartPOM, navPOM }, testInfo) => {
+test("Checkout Process", async ({ page, CartAndClearup, navPOM }, testInfo) => {
     // Navigate to Checkout
-    const checkout: CheckoutPOM = await cartPOM.GoToCheckout();
+    const checkout: CheckoutPOM = await CartAndClearup.GoToCheckout();
 
     // Create customer object to use to populate billing fields
     const customerInfo = new Customer(billingDetails.fName,
@@ -25,8 +25,10 @@ test("Checkout Process", async ({ page, LoginAddItemLogout, cartPOM, navPOM }, t
     console.log("Validated Billing Details have been populated correctly.");
 
     // Selects payment and places the order
-    const paymentMethod: string = "Cheque";
-    const orderRecieved : OrderInfoPOM = await (await checkout.SelectPayment(paymentMethod)).PlaceOrder();
+    const paymentMethod = "Cheque";
+
+    await checkout.SelectPayment(paymentMethod);
+    const orderRecieved = await checkout.PlaceOrder();
 
     // Take screenshot of the new Order
     await page.waitForURL(/order-received/); // wait until page navigates
@@ -41,7 +43,7 @@ test("Checkout Process", async ({ page, LoginAddItemLogout, cartPOM, navPOM }, t
     const newOrderNum = await orderRecieved.GetOrderNumber();
 
     // Navigate to all orders page from account
-    const allOrders : AllOrdersPOM = await (await navPOM.GoToAccount()).GoToOrders();
+    const allOrders: AllOrdersPOM = await (await navPOM.GoToAccount()).GoToOrders();
 
     // Capture order number on All Orders Page
     const orderNumCheck = await allOrders.GetLatestOrder();

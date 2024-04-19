@@ -1,4 +1,4 @@
-import { Page } from "@playwright/test";
+import { Page, expect } from "@playwright/test";
 import CheckoutPOM from "./CheckoutPOM";
 
 class CartPOM {
@@ -75,6 +75,18 @@ class CartPOM {
         return Number(checkTotal.toFixed(2));
     }
 
+    /* Checks if added items are in the actual cart */
+    async CheckItemInCart(addedItems : string[]) {
+        const itemsInCart = await this.cartItems().all();
+        const itemNamesPromises = itemsInCart.map(item => item.textContent());
+        const itemNamesInCart = await Promise.all(itemNamesPromises);
+
+        for (const item of addedItems) {
+            expect(itemNamesInCart.includes(item)).toBeTruthy();
+            console.log(`Verified that the '${item}' is in the cart`);
+        }
+    }
+
     /* Navigates to the checkout page. */
     async GoToCheckout() {
         await this.checkoutLink().click();
@@ -85,7 +97,6 @@ class CartPOM {
 
     /* Removes all coupon discounts added to cart */
     async RemoveDiscounts(): Promise<CartPOM> {
-        //await this.page.waitForLoadState("networkidle"); 
         const removeLink = await this.removeDiscountButton().all();
 
         for (let i = 0; i < removeLink.length; i++) {
@@ -96,6 +107,7 @@ class CartPOM {
     }
 
     async EmptyCart() {
+        await this.RemoveDiscounts();
         const removeItems = await this.removeItemButton().all();
 
         for (let i = 0; i < removeItems.length; i++) {

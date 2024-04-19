@@ -1,5 +1,7 @@
-import { Page } from "@playwright/test";
+import { Page, expect } from "@playwright/test";
 import CartPOM from "./CartPOM";
+import products from "../Data/Products.json"
+
 
 class ShopPOM {
     page: Page;
@@ -9,18 +11,52 @@ class ShopPOM {
     }
 
     // Locators
-    addToCartButton = (item : string) => this.page.getByLabel(`Add “${item}” to your cart`);
+    addToCartButton = (item: string) => this.page.getByLabel(`Add “${item}” to your cart`);
     viewCartButton = () => this.page.getByTitle('View cart');
+    getProductViewCart = (product: string) => this.page.locator('li').filter({ hasText: `${product}` }).getByTitle('View cart');
 
+    async checkItemsExists(): Promise<string> {
+        let itemsNotFound: string [] = []
+
+        for (const item of products) {
+            if (item.AddToCart) {
+                if (await this.addToCartButton(item.ProductName).isVisible()) {
+                    console.log(`'${item.ProductName}' exists on the shop page..`)
+
+                    
+                } else {
+                    itemsNotFound.push(item.ProductName);
+                }
+            }
+        }
+
+        if (itemsNotFound.length == 0) {
+            return "All Items from data file exists"
+        } else {
+            return itemsNotFound.join(", ") + " does not exist!";
+        }
+    }
 
     /* AddToCart(string)
       - Clicks the "Add to Cart" button for the specified item.
     */
-    async AddToCart(itemName : string) {
-        await this.addToCartButton(itemName).click();
-        console.log("Added to Cart");
+    async AddToCart(): Promise<string[]> {
+        let addedItems: string [] = []
 
-        return this;
+        for (const item of products) {
+            if (item.AddToCart) {
+                if (await this.addToCartButton(item.ProductName).isVisible()) {
+                    await this.addToCartButton(item.ProductName).click();
+                    console.log(`${item.ProductName} Added to Cart`);
+                    addedItems.push(item.ProductName);
+                    
+                    // Wait for view cart button to be visible before moving on
+                    await expect(this.getProductViewCart(item.ProductName)).toBeVisible();
+                }
+            }
+        }
+
+        return addedItems;
     }
 
     /* Navigates to the cart page. */
