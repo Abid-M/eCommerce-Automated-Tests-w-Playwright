@@ -1,15 +1,26 @@
 import { test as base, expect } from "@playwright/test";
 import { LoginPOM, NavPOM, CartPOM, MyAccountPOM, ShopPOM } from "../POMPages";
+import * as fs from 'fs';
 
 // Declaring types of fixtures ( for type arguments)
 type fixtures = {
     loggedInAccountPage: MyAccountPOM;
-    CartAndClearup: CartPOM;
+    cartAndClearup: CartPOM;
+    customer: any;
 }
 
 type pomFixtures = {
     // POM pages as fixtures
     navPOM: NavPOM;
+}
+interface CustomerData {
+    fName: string;
+    lName: string;
+    address: string;
+    city: string;
+    postcode: string;
+    phone: string;
+    email: string;
 }
 
 export const test = base.extend<fixtures & pomFixtures>({
@@ -33,7 +44,7 @@ export const test = base.extend<fixtures & pomFixtures>({
         await use(account);
     },
 
-    CartAndClearup: async ({ page, navPOM, loggedInAccountPage }, use) => {
+    cartAndClearup: async ({ page, navPOM, loggedInAccountPage }, use) => {
         // Navigate to Shop Page
         const shop: ShopPOM = await navPOM.GoToShop();
 
@@ -73,6 +84,13 @@ export const test = base.extend<fixtures & pomFixtures>({
         console.log("Successfully Logged Out")
 
         await loggedInAccountPage.page.close();
+    },
+
+    customer: async({}, use) => {
+        const rawData = fs.readFileSync('./tests/Data/CustomerDetails.json');
+        const customerDetails: CustomerData = await JSON.parse(rawData.toString());
+
+        await use(customerDetails);
     },
 
     navPOM: async ({ page }, use) => {

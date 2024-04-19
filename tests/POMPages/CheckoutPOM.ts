@@ -1,5 +1,4 @@
 import { Page } from "@playwright/test";
-import Customer from "../Utils/Customer";
 import OrderInfoPOM from "./OrderInfoPOM";
 
 class CheckoutPOM {
@@ -26,13 +25,13 @@ class CheckoutPOM {
        - Fills in the billing details using the provided Customer object.
        - Sets the first name, last name, address, city, postcode, phone, and email. 
     */
-    async FillInBillingDetails(customerInfo : Customer) {
-        await this.fNameField().fill(customerInfo.firstName);
-        await this.lNameField().fill(customerInfo.lastName);
+    async FillInBillingDetails(customerInfo : CustomerData) {
+        await this.fNameField().fill(customerInfo.fName);
+        await this.lNameField().fill(customerInfo.lName);
         await this.streetAdressField().fill(customerInfo.address);
         await this.cityField().fill(customerInfo.city);
         await this.postcodeField().fill(customerInfo.postcode);
-        await this.phoneField().fill(customerInfo.phoneNumber);
+        await this.phoneField().fill(customerInfo.phone);
         await this.emailField().fill(customerInfo.email);
 
         console.log("Billing Details Populated..")
@@ -40,14 +39,14 @@ class CheckoutPOM {
 
     /* Validates whether the billing details within the input fields 
     match those provided in the Customer object. */
-    async ValidateDetails(customer : Customer) : Promise<string> {
+    async ValidateDetails(customer : CustomerData) : Promise<string> {
         let mismatch : string[] = [];
 
-        if(customer.firstName != await this.fNameField().inputValue())
-            mismatch.push(`Expected First Name to be '${customer.firstName}' but got '${await this.fNameField().inputValue()}'`)
+        if(customer.fName != await this.fNameField().inputValue())
+            mismatch.push(`Expected First Name to be '${customer.fName}' but got '${await this.fNameField().inputValue()}'`)
 
-        if (customer.lastName !== await this.lNameField().inputValue()) 
-            mismatch.push(`Expected Last Name to be '${customer.lastName}' but got '${await this.lNameField().inputValue()}'`)
+        if (customer.lName !== await this.lNameField().inputValue()) 
+            mismatch.push(`Expected Last Name to be '${customer.lName}' but got '${await this.lNameField().inputValue()}'`)
 
         if (customer.address !== await this.streetAdressField().inputValue())
             mismatch.push(`Expected Address to be '${customer.address}' but got '${await this.streetAdressField().inputValue()}'`)
@@ -58,8 +57,8 @@ class CheckoutPOM {
         if (customer.postcode !== await this.postcodeField().inputValue())
             mismatch.push(`Expected Postcode to be '${customer.postcode}' but got '${await this.postcodeField().inputValue()}'`)
         
-        if (customer.phoneNumber !== await this.phoneField().inputValue())
-            mismatch.push(`Expected Phone Number to be '${customer.phoneNumber}' but got '${await this.phoneField().inputValue()}'`)
+        if (customer.phone !== await this.phoneField().inputValue())
+            mismatch.push(`Expected Phone Number to be '${customer.phone}' but got '${await this.phoneField().inputValue()}'`)
         
         if (customer.email !== await this.emailField().inputValue())
             mismatch.push(`Expected Email to be '${customer.email}' but got '${await this.emailField().inputValue()}'`)

@@ -1,25 +1,14 @@
 import { test, expect } from "./Utils/Fixtures";
-import Customer from "./Utils/Customer";
-import billingDetails from "./Data/BillingDetails.json"
 import { AllOrdersPOM, CheckoutPOM, MyAccountPOM } from "./POMPages";
 
-test("Checkout Process", async ({ page, CartAndClearup, navPOM }, testInfo) => {
+test("Checkout Process", async ({ page, cartAndClearup, navPOM, customer }, testInfo) => {
     // Navigate to Checkout
-    const checkout: CheckoutPOM = await CartAndClearup.GoToCheckout();
-
-    // Create customer object to use to populate billing fields
-    const customerInfo = new Customer(billingDetails.fName,
-                                      billingDetails.lName,
-                                      billingDetails.address,
-                                      billingDetails.city,
-                                      billingDetails.postcode,
-                                      billingDetails.phone,
-                                      billingDetails.email);
+    const checkout: CheckoutPOM = await cartAndClearup.GoToCheckout();
 
     // Fill in Billing Input Fields with customer object
-    await checkout.FillInBillingDetails(customerInfo);
+    await checkout.FillInBillingDetails(customer);
     // Validate billing fields have been entered with customer details
-    const mismatch = checkout.ValidateDetails(customerInfo);
+    const mismatch = checkout.ValidateDetails(customer);
 
     await expect(mismatch, `Expected billing input fields to match`).resolves.toBe('');
     console.log("Validated Billing Details have been populated correctly");
