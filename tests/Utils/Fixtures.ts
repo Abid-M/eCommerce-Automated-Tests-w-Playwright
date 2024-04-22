@@ -17,7 +17,7 @@ type MyOptions = {
 };
 
 export const test = base.extend<fixtures & MyOptions>({
-    defaultPaymentMethod: ['Something nice', { option: true }],
+    defaultPaymentMethod: ['Cash', { option: true }],
 
     loggedInAccountPage: async ({ page, navPOM }, use) => {
         // Navigates and validates eCommerce site

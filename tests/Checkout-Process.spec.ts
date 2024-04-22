@@ -1,7 +1,7 @@
 import { test, expect } from "./Utils/Fixtures";
 import { AllOrdersPOM, CheckoutPOM, MyAccountPOM } from "./POMPages";
 
-test("Checkout Process", async ({ page, cartAndClearup, navPOM, customer, defaultPaymentMethod }, testInfo) => {
+test("Checkout Process", async ({ page, cartAndClearup, navPOM, customer, defaultPaymentMethod  }, testInfo) => {
     // Navigate to Checkout
     const checkout: CheckoutPOM = await cartAndClearup.goToCheckout();
 
@@ -11,7 +11,7 @@ test("Checkout Process", async ({ page, cartAndClearup, navPOM, customer, defaul
     const mismatch = checkout.validateDetails(customer);
 
     await expect(mismatch, `Expected billing input fields to match`).resolves.toBe('');
-    
+
     // Selects payment and places the order
     // const paymentMethod = "Cheque"; //or Cash
 
