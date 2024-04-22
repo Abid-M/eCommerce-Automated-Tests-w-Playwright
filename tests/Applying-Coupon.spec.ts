@@ -2,7 +2,7 @@ import { test, expect } from "./Utils/Fixtures";
 import couponData from "./Data/CouponCodes.json"
 
 couponData.forEach(coupon => {
-    test(`Applying Coupon - '${coupon.code}' `, async ({ cartAndClearup }, testInfo) => {
+    test(`Applying Coupon - '${coupon.code}' `, async ({ fillCartAndClearup: cartAndClearup }, testInfo) => {
       // Validates the entered coupon
       await (await cartAndClearup.enterCoupon(coupon.code)).applyCoupon();
       await expect(cartAndClearup.alertMessage(), `Expected Coupon Code '${coupon.code}' to be valid`).not.toContainText("does not exist!");

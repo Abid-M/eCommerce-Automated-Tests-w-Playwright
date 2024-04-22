@@ -8,7 +8,7 @@ type fixtures = {
     loggedInAccountPage: MyAccountPOM;
     navPOM: NavPOM;
 
-    cartAndClearup: CartPOM;
+    fillCartAndClearup: CartPOM;
     customer: CustomerData;
 }
 
@@ -39,7 +39,7 @@ export const test = base.extend<fixtures & MyOptions>({
         await use(account);
     },
 
-    cartAndClearup: async ({ page, navPOM, loggedInAccountPage }, use) => {
+    fillCartAndClearup: async ({ page, navPOM, loggedInAccountPage }, use) => {
         // Navigate to Shop Page
         const shop: ShopPOM = await navPOM.goToShop();
 

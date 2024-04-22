@@ -1,7 +1,7 @@
 import { test, expect } from "./Utils/Fixtures";
 import { AllOrdersPOM, CheckoutPOM, MyAccountPOM } from "./POMPages";
 
-test("Checkout Process", async ({ page, cartAndClearup, navPOM, customer, defaultPaymentMethod  }, testInfo) => {
+test("Checkout Process", async ({ page, fillCartAndClearup: cartAndClearup, navPOM, customer, defaultPaymentMethod  }, testInfo) => {
     // Navigate to Checkout
     const checkout: CheckoutPOM = await cartAndClearup.goToCheckout();
 

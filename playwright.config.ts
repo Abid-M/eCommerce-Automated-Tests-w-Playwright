@@ -39,7 +39,7 @@ export default defineConfig({
     },
 
     {
-      name: 'firefox-test',
+      name: 'firefox-test', 
       use: { ...devices['Desktop Firefox'] },
     },
 
