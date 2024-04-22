@@ -66,7 +66,7 @@ export const test = base.extend<fixtures & pomFixtures>({
 
         // Teardown Clearup
         if (!page.url().includes("cart")) {
-          await navPOM.GoToCart();
+            await navPOM.GoToCart();
         }
 
         // Removes all discounts and empties the cart
@@ -86,11 +86,14 @@ export const test = base.extend<fixtures & pomFixtures>({
         await loggedInAccountPage.page.close();
     },
 
-    customer: async({}, use) => {
-        const rawData = fs.readFileSync('./tests/Data/CustomerDetails.json');
-        const customerDetails: CustomerData = await JSON.parse(rawData.toString());
-
-        await use(customerDetails);
+    customer: async ({ }, use) => {
+        try {
+            const rawData = fs.readFileSync('./tests/Data/CustomerDetails.json');
+            const customerDetails = await JSON.parse(rawData.toString()) as CustomerData;
+            await use(customerDetails);
+        } catch (error) {
+            console.error('An error occurred while parsing JSON or using customer details:', error);
+        }
     },
 
     navPOM: async ({ page }, use) => {
