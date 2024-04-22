@@ -6,7 +6,7 @@ import * as fs from 'fs';
 type fixtures = {
     loggedInAccountPage: MyAccountPOM;
     cartAndClearup: CartPOM;
-    customer: any;
+    customer: CustomerData;
 }
 
 type pomFixtures = {
