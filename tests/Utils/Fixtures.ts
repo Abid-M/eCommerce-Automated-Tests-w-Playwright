@@ -1,29 +1,24 @@
 import { test as base, expect } from "@playwright/test";
 import { LoginPOM, NavPOM, CartPOM, MyAccountPOM, ShopPOM } from "../POMPages";
+import CustomerData from "../Data/CustomerInterface";
 import * as fs from 'fs';
 
 // Declaring types of fixtures ( for type arguments)
 type fixtures = {
     loggedInAccountPage: MyAccountPOM;
+    navPOM: NavPOM;
+
     cartAndClearup: CartPOM;
     customer: CustomerData;
 }
 
-type pomFixtures = {
-    // POM pages as fixtures
-    navPOM: NavPOM;
-}
-interface CustomerData {
-    fName: string;
-    lName: string;
-    address: string;
-    city: string;
-    postcode: string;
-    phone: string;
-    email: string;
-}
+type MyOptions = {
+    defaultPaymentMethod: string;
+};
 
-export const test = base.extend<fixtures & pomFixtures>({
+export const test = base.extend<fixtures & MyOptions>({
+    defaultPaymentMethod: ['Something nice', { option: true }],
+
     loggedInAccountPage: async ({ page, navPOM }, use) => {
         // Navigates and validates eCommerce site
         await page.goto('');
@@ -51,7 +46,6 @@ export const test = base.extend<fixtures & pomFixtures>({
         // Checks to see if products exists from json file 
         // Set Products in JSON 
         let itemsExists: Promise<string> = shop.checkItemsExists();
-        console.log(itemsExists);
         await expect.soft(itemsExists).resolves.toBe("All Items from data file exists");
 
         const addedItems = await shop.addToCart();

@@ -1,7 +1,7 @@
 import { test, expect } from "./Utils/Fixtures";
 import { AllOrdersPOM, CheckoutPOM, MyAccountPOM } from "./POMPages";
 
-test("Checkout Process", async ({ page, cartAndClearup, navPOM, customer }, testInfo) => {
+test("Checkout Process", async ({ page, cartAndClearup, navPOM, customer, defaultPaymentMethod }, testInfo) => {
     // Navigate to Checkout
     const checkout: CheckoutPOM = await cartAndClearup.goToCheckout();
 
@@ -11,12 +11,11 @@ test("Checkout Process", async ({ page, cartAndClearup, navPOM, customer }, test
     const mismatch = checkout.validateDetails(customer);
 
     await expect(mismatch, `Expected billing input fields to match`).resolves.toBe('');
-    console.log("Validated Billing Details have been populated correctly");
-
+    
     // Selects payment and places the order
-    const paymentMethod = "Cheque"; //or Cash
+    // const paymentMethod = "Cheque"; //or Cash
 
-    await checkout.selectPayment(paymentMethod);
+    await checkout.selectPayment(defaultPaymentMethod);
     const orderRecieved = await checkout.placeOrder();
 
     // Take screenshot of the new Order
@@ -47,7 +46,7 @@ test("Checkout Process", async ({ page, cartAndClearup, navPOM, customer }, test
 
     await allOrders.orderTable().screenshot({
       path: `./Screenshots/All Orders, ${date}.png`,
-      mask: [page.locator('tbody tr').nth(0)],
+      mask: [allOrders.page.locator('tbody tr').nth(0)],
       maskColor: 'rgba(201, 242, 155, 0.5)',
     });
 
