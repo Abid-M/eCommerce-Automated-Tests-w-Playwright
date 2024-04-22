@@ -1,4 +1,4 @@
-# 🛒 eCommerce Automated Tests w/ Playwright <img src="https://github.com/Abid-M/AbidMiah-Website/assets/77882906/22b9b0ad-3dd9-4822-8a31-36592704af68" alt="nfocus_logo" align="right" width="120">
+# 🛒 eCommerce Automated Tests w/ Playwright <img alt="nFocus Logo" src="https://github.com/Abid-M/eCommerce-Automated-Tests-w-Selenium/assets/77882906/16e6064a-3cde-4ee3-8107-60aa59f5dc1f" alt="nfocus_logo" align="right" width="120">
 
 User end-to-end tests written in typescript, with the use of Playwright.
 
