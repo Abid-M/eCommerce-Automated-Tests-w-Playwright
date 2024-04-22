@@ -28,9 +28,9 @@ export const test = base.extend<fixtures & pomFixtures>({
         // Navigates and validates eCommerce site
         await page.goto('');
 
-        const account: MyAccountPOM = await navPOM.GoToAccount();
+        const account: MyAccountPOM = await navPOM.goToAccount();
         await expect(account.nFocusHeader()).toBeVisible();
-        await navPOM.DismissBanner();
+        await navPOM.dismissBanner();
 
         // Retrieves sensitive email and password from .env file. If variable is null, throw error.
         const email: string = process.env.EMAIL ?? (() => { throw new Error("USERNAME env variable is not set"); })();
@@ -38,7 +38,7 @@ export const test = base.extend<fixtures & pomFixtures>({
 
         // Validates login
         const login = new LoginPOM(page);
-        expect(await login.ValidLogin(email, password), "Should be logged in").toBeTruthy();
+        expect(await login.validLogin(email, password), "Should be logged in").toBeTruthy();
         console.log("Succesfully Logged In")
 
         await use(account);
@@ -46,7 +46,7 @@ export const test = base.extend<fixtures & pomFixtures>({
 
     cartAndClearup: async ({ page, navPOM, loggedInAccountPage }, use) => {
         // Navigate to Shop Page
-        const shop: ShopPOM = await navPOM.GoToShop();
+        const shop: ShopPOM = await navPOM.goToShop();
 
         // Checks to see if products exists from json file 
         // Set Products in JSON 
@@ -54,30 +54,30 @@ export const test = base.extend<fixtures & pomFixtures>({
         console.log(itemsExists);
         await expect.soft(itemsExists).resolves.toBe("All Items from data file exists");
 
-        const addedItems = await shop.AddToCart();
+        const addedItems = await shop.addToCart();
         expect(addedItems, 'Items should have been added to Cart, Check Products JSON file').not.toHaveLength(0);
 
         // redirect to Cart Page
-        const cart: CartPOM = await shop.GoToCart();
+        const cart: CartPOM = await shop.goToCart();
         // Verifies items are actually in the cart
-        cart.CheckItemInCart(addedItems);
+        cart.checkItemInCart(addedItems);
 
         await use(cart);
 
         // Teardown Clearup
         if (!page.url().includes("cart")) {
-            await navPOM.GoToCart();
+            await navPOM.goToCart();
         }
 
         // Removes all discounts and empties the cart
-        await cart.EmptyCart();
+        await cart.emptyCart();
         // Verifies that the cart is empty  
         await expect(cart.cartEmptyDialog()).toBeVisible();
         console.log("Check Cart Cleared")
 
         // Navigate to Account Page and Logout
-        await navPOM.GoToAccount();
-        await loggedInAccountPage.Logout();
+        await navPOM.goToAccount();
+        await loggedInAccountPage.logout();
 
         // Verifies logged out if 'login' text on page
         await expect(loggedInAccountPage.loginText(), "Should be logged out").toBeVisible();

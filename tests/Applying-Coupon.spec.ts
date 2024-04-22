@@ -4,16 +4,16 @@ import couponData from "./Data/CouponCodes.json"
 couponData.forEach(coupon => {
     test(`Applying Coupon - '${coupon.code}' `, async ({ page, cartAndClearup, customer}, testInfo) => {
       // Validates the entered coupon
-      await (await cartAndClearup.EnterCoupon(coupon.code)).ApplyCoupon();
+      await (await cartAndClearup.enterCoupon(coupon.code)).applyCoupon();
       await expect(cartAndClearup.alertMessage(), `Expected Coupon Code '${coupon.code}' to be valid`).not.toContainText("does not exist!");
       console.log(`Valid Coupon Applied: '${coupon.code}'`);
 
       const expectedDiscount = coupon.discount; // Expected Discount of 25% for nfocus. 15% for edgewords
-      const actualDiscount = await cartAndClearup.GetDiscountPercentage(coupon.code); // Calculates actual discount
+      const actualDiscount = await cartAndClearup.getDiscountPercentage(coupon.code); // Calculates actual discount
       expect(actualDiscount, `Expected ${expectedDiscount}% off, Actual ${actualDiscount}% off`).toBe(expectedDiscount);
 
-      const calculatedTotal = await cartAndClearup.CalculateTotal(coupon.code);
-      const grandTotalPrice = await cartAndClearup.GetGrandTotalPrice();
+      const calculatedTotal = await cartAndClearup.calculateTotal(coupon.code);
+      const grandTotalPrice = await cartAndClearup.getGrandTotalPrice();
 
       // Validates that the discount has been applied correctly with the total price
       expect(grandTotalPrice, "Discount not applied correctly!").toBe(calculatedTotal);

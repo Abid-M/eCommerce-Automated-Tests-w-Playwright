@@ -1,39 +1,31 @@
-import {Page} from '@playwright/test'
-
-class LoginPOM {
-
-    page : Page; 
-    
-    constructor(page: Page) {
-        this.page = page;
-    }
-
+import BasePOM from "./BasePOM";
+class LoginPOM extends BasePOM {
     // Locators
-    usernameField = () => this.page.getByLabel('Username or email address *');
-    passwordField = () => this.page.locator('#password');
-    loginButton = () => this.page.getByRole('button', { name: 'Log in' });
-    logoutButton = () => this.page.getByRole('link', { name: 'Logout' });
+    private usernameField = () => this.page.getByLabel('Username or email address *');
+    private passwordField = () => this.page.locator('#password');
+    private loginButton = () => this.page.getByRole('button', { name: 'Log in' });
+    private logoutButton = () => this.page.getByRole('link', { name: 'Logout' });
 
     /* Clears and sets the value of the username field. */
-    async SetUsername(username : string) {
+    async setUsername(username: string) {
         await this.usernameField().fill(username);
     }
 
     /* Clears and sets the value of the password field. */
-    async SetPassword(password : string) {
+    async setPassword(password: string) {
         await this.passwordField().fill(password)
     }
 
     /* Clicks the login button. */
-    async GoLogin() {
+    async goLogin() {
         await this.loginButton().click();
     }
 
     /* Attempts to log in with the specified username and password. */
-    async ValidLogin(username : string, password : string) : Promise<boolean> {
-        await this.SetUsername(username);
-        await this.SetPassword(password);
-        await this.GoLogin();
+    async validLogin(username: string, password: string) : Promise<boolean> {
+        await this.setUsername(username);
+        await this.setPassword(password);
+        await this.goLogin();
         
         return await this.logoutButton().isVisible();
     }

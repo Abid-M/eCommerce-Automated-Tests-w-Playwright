@@ -1,17 +1,10 @@
-import { Page } from "@playwright/test";
-
-class OrderInfoPOM {
-    page: Page;
-
-    constructor(page: Page) {
-        this.page = page;
-    }
-
+import BasePOM from "./BasePOM";
+class OrderInfoPOM extends BasePOM {
     // Locators
-    orderNumber = () => this.page.locator(".order strong");
+    private orderNumber = () => this.page.locator(".order strong");
 
     /* Gets the order number from the order confirmation page. */
-    async GetOrderNumber() {
+    async getOrderNumber(): Promise<string|null> {
         const orderNum = await this.orderNumber().textContent();
         console.log(`New Order Number: ${orderNum}`)
 

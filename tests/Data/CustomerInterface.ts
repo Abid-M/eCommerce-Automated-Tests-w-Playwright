@@ -7,3 +7,5 @@ interface CustomerData {
     phone: string;
     email: string;
 }
+
+export default CustomerData;

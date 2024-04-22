@@ -1,17 +1,11 @@
-import { Page } from "@playwright/test";
+import BasePOM  from "./BasePOM";
 
-class AllOrdersPOM {
-    page: Page;
-
-    constructor(page: Page) {
-        this.page = page;
-    }
-
+class AllOrdersPOM extends BasePOM{
     // Locators
-    newOrderNumber = () => this.page.locator("td[data-title='Order'] a");
-    orderTable = () => this.page.locator('.woocommerce-orders-table');
+    private newOrderNumber = () => this.page.locator("td[data-title='Order'] a");
+    public orderTable = () => this.page.locator('.woocommerce-orders-table');
 
-    async GetLatestOrder () {
+    async getLatestOrder () {
         // getting the 'first' latest order top
         const newOrderNo = await this.newOrderNumber().first().textContent();
         return newOrderNo?.trim().replace("#","");

@@ -3,12 +3,12 @@ import { AllOrdersPOM, CheckoutPOM, MyAccountPOM } from "./POMPages";
 
 test("Checkout Process", async ({ page, cartAndClearup, navPOM, customer }, testInfo) => {
     // Navigate to Checkout
-    const checkout: CheckoutPOM = await cartAndClearup.GoToCheckout();
+    const checkout: CheckoutPOM = await cartAndClearup.goToCheckout();
 
     // Fill in Billing Input Fields with customer object
-    await checkout.FillInBillingDetails(customer);
+    await checkout.fillInBillingDetails(customer);
     // Validate billing fields have been entered with customer details
-    const mismatch = checkout.ValidateDetails(customer);
+    const mismatch = checkout.validateDetails(customer);
 
     await expect(mismatch, `Expected billing input fields to match`).resolves.toBe('');
     console.log("Validated Billing Details have been populated correctly");
@@ -16,8 +16,8 @@ test("Checkout Process", async ({ page, cartAndClearup, navPOM, customer }, test
     // Selects payment and places the order
     const paymentMethod = "Cheque"; //or Cash
 
-    await checkout.SelectPayment(paymentMethod);
-    const orderRecieved = await checkout.PlaceOrder();
+    await checkout.selectPayment(paymentMethod);
+    const orderRecieved = await checkout.placeOrder();
 
     // Take screenshot of the new Order
     await page.waitForURL(/order-received/); // wait until page navigates
@@ -29,14 +29,14 @@ test("Checkout Process", async ({ page, cartAndClearup, navPOM, customer }, test
     await testInfo.attach('New Order', { path: `./Screenshots/New Order, ${date}.png` });
 
     // Captures the new order number
-    const newOrderNum = await orderRecieved.GetOrderNumber();
+    const newOrderNum = await orderRecieved.getOrderNumber();
 
     // Navigate to all orders page from account
-    const account: MyAccountPOM = await navPOM.GoToAccount();
-    const allOrders: AllOrdersPOM = await account.GoToOrders();
+    const account: MyAccountPOM = await navPOM.goToAccount();
+    const allOrders: AllOrdersPOM = await account.goToOrders();
 
     // Capture order number on All Orders Page
-    const orderNumCheck = await allOrders.GetLatestOrder();
+    const orderNumCheck = await allOrders.getLatestOrder();
 
     expect(orderNumCheck, `Expected order number: ${orderNumCheck}, Actual order number: ${newOrderNum}`).toEqual(newOrderNum);
     console.log("Verified that the order numbers match from checkout page..");

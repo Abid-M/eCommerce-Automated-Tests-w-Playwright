@@ -17,7 +17,7 @@ export default defineConfig({
   use: {
     baseURL: 'https://www.edgewordstraining.co.uk/demo-site/',
     trace: 'on',
-    headless: false,
+    headless: process.env.CI ? true : false,
     launchOptions: {args: ["--start-maximized"]},
     viewport: null,
     screenshot: 'only-on-failure',

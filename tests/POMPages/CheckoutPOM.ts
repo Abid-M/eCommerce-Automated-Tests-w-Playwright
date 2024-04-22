@@ -1,31 +1,26 @@
-import { Page } from "@playwright/test";
 import OrderInfoPOM from "./OrderInfoPOM";
+import CustomerData from "../Data/CustomerInterface";
+import BasePOM from "./BasePOM";
 
-class CheckoutPOM {
-    page: Page;
-
-    constructor(page: Page) {
-        this.page = page;
-    }
-
+class CheckoutPOM extends BasePOM {
     // Locators
-    fNameField = () => this.page.getByRole('textbox', { name: 'First name *' }).first();
-    lNameField = () => this.page.getByRole('textbox', { name: 'Last name *' }).first();
-    streetAdressField = () => this.page.getByRole('textbox', { name: 'Street address *' }).first();
-    cityField = () => this.page.getByRole('textbox', { name: 'Town / City *' }).first();
-    postcodeField = () => this.page.getByRole('textbox', { name: 'Postcode *' }).first();
-    phoneField = () => this.page.getByLabel('Phone *').first();
-    emailField = () => this.page.getByLabel('Email address *').first();
+    private fNameField = () => this.page.getByRole('textbox', { name: 'First name *' }).first();
+    private lNameField = () => this.page.getByRole('textbox', { name: 'Last name *' }).first();
+    private streetAdressField = () => this.page.getByRole('textbox', { name: 'Street address *' }).first();
+    private cityField = () => this.page.getByRole('textbox', { name: 'Town / City *' }).first();
+    private postcodeField = () => this.page.getByRole('textbox', { name: 'Postcode *' }).first();
+    private phoneField = () => this.page.getByLabel('Phone *').first();
+    private emailField = () => this.page.getByLabel('Email address *').first();
 
-    cashPaymentButton = () => this.page.getByText('Cash on delivery');
-    chequePaymentButton = () => this.page.getByText('Check payments');
-    placeOrderButton = () => this.page.getByRole('button', { name: 'Place order' });
+    private cashPaymentButton = () => this.page.getByText('Cash on delivery');
+    private chequePaymentButton = () => this.page.getByText('Check payments');
+    private placeOrderButton = () => this.page.getByRole('button', { name: 'Place order' });
 
-    /* FillInBillingDetails(Customer)
+    /* FillInBillingDetails(Cu stomer)
        - Fills in the billing details using the provided Customer object.
        - Sets the first name, last name, address, city, postcode, phone, and email. 
     */
-    async FillInBillingDetails(customerInfo : CustomerData) {
+    async fillInBillingDetails(customerInfo : CustomerData) {
         await this.fNameField().fill(customerInfo.fName);
         await this.lNameField().fill(customerInfo.lName);
         await this.streetAdressField().fill(customerInfo.address);
@@ -39,7 +34,7 @@ class CheckoutPOM {
 
     /* Validates whether the billing details within the input fields 
     match those provided in the Customer object. */
-    async ValidateDetails(customer : CustomerData) : Promise<string> {
+    async validateDetails(customer : CustomerData) : Promise<string> {
         let mismatch : string[] = [];
 
         if(customer.fName != await this.fNameField().inputValue())
@@ -68,7 +63,7 @@ class CheckoutPOM {
     }
 
     /* Selects the payment method for checkout (check or cash). */
-    async SelectPayment(paymentMethod: string) {
+    async selectPayment(paymentMethod: string) {
         if (paymentMethod === "Cash") {
             await this.cashPaymentButton().click();
             console.log("Cash Payment Selected")
@@ -80,7 +75,7 @@ class CheckoutPOM {
     }
 
     /* Places the order by clicking on the place order button. */
-    async PlaceOrder(){
+    async placeOrder(){
         await this.placeOrderButton().click();
         console.log("Order Placed..");
 

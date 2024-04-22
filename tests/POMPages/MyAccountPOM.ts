@@ -1,27 +1,18 @@
-import {Page} from '@playwright/test'
 import AllOrdersPOM from './AllOrdersPOM';
+import BasePOM from './BasePOM';
 
-class MyAccountPOM {
-
-    page : Page; 
-    
-    constructor(page: Page) {
-        this.page = page;
-    }
-
+class MyAccountPOM extends BasePOM{
     // Locators
-    logoutLink = () => this.page.getByRole('link', { name: 'Logout' });
-    ordersLink = () => this.page.getByRole('link', { name: 'Orders' });
-    nFocusHeader = () => this.page.getByRole("link", { name: 'nFocus Shop' });
-    loginText = () => this.page.getByText("Login");
+    private logoutLink = () => this.page.getByRole('link', { name: 'Logout' });
+    private ordersLink = () => this.page.getByRole('link', { name: 'Orders' });
+    public nFocusHeader = () => this.page.getByRole("link", { name: 'nFocus Shop' });
+    public loginText = () => this.page.getByText("Login");
 
-    async Logout() {
+    async logout() {
         await this.logoutLink().click();
-
-        return this;
     }
 
-    async GoToOrders() {
+    async goToOrders(): Promise<AllOrdersPOM> {
         // Two elements, choose first and redirect, both take to same page anyways
         await this.ordersLink().first().click();
         console.log("Navigated to All Orders on account page")

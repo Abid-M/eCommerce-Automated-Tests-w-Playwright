@@ -1,19 +1,13 @@
-import { Page, expect } from "@playwright/test";
+import { expect } from "@playwright/test";
 import CartPOM from "./CartPOM";
 import products from "../Data/Products.json"
+import BasePOM from "./BasePOM";
 
-
-class ShopPOM {
-    page: Page;
-
-    constructor(page: Page) {
-        this.page = page;
-    }
-
+class ShopPOM extends BasePOM {
     // Locators
-    addToCartButton = (item: string) => this.page.getByLabel(`Add “${item}” to your cart`);
-    viewCartButton = () => this.page.getByTitle('View cart');
-    getProductViewCart = (product: string) => this.page.locator('li').filter({ hasText: `${product}` }).getByTitle('View cart');
+    private addToCartButton = (item: string) => this.page.getByLabel(`Add “${item}” to your cart`);
+    private viewCartButton = () => this.page.getByTitle('View cart');
+    private getProductViewCart = (product: string) => this.page.locator('li').filter({ hasText: `${product}` }).getByTitle('View cart');
 
     async checkItemsExists(): Promise<string> {
         let itemsNotFound: string [] = []
@@ -40,7 +34,7 @@ class ShopPOM {
     /* AddToCart(string)
       - Clicks the "Add to Cart" button for the specified item.
     */
-    async AddToCart(): Promise<string[]> {
+    async addToCart(): Promise<string[]> {
         let addedItems: string [] = []
 
         for (const item of products) {
@@ -60,7 +54,7 @@ class ShopPOM {
     }
 
     /* Navigates to the cart page. */
-    async GoToCart() {
+    async goToCart() {
         await this.viewCartButton().first().click();
         console.log("Navigated to the Cart Page");
 

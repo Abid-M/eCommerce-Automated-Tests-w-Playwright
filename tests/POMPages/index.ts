@@ -1,3 +1,4 @@
+export {default as BasePOM} from "./BasePOM";
 export {default as AllOrdersPOM} from "./AllOrdersPOM";
 export {default as CartPOM} from "./CartPOM";
 export {default as CheckoutPOM} from "./CheckoutPOM";
