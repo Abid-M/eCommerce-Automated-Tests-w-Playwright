@@ -24,7 +24,6 @@ export default defineConfig({
     video: 'retain-on-failure'
   },
 
-  // testMatch: ["eCommerce.spec.tes"]
   /* Configure projects for major browsers */
   projects: [
     {
