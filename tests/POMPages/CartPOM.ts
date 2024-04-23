@@ -4,7 +4,7 @@ import BasePOM from "./BasePOM";
 
 class CartPOM extends BasePOM {
     // Locators
-    private cartItems = () => this.page.locator("td.product-name a"); //Collates all items in the cart (Tests for multiple items in cart)
+    private cartItems = () => this.page.locator("td.product-name a");
     private couponCodeField = () => this.page.getByPlaceholder('Coupon code');
     private applyCouponButton = () => this.page.getByRole('button', { name: 'Apply coupon' });
     public alertMessage = () => this.page.getByRole('alert');

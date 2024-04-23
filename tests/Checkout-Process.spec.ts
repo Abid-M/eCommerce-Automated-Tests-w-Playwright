@@ -52,4 +52,4 @@ test("Checkout Process", async ({ page, fillCartAndClearup: cartAndClearup, navP
 
     console.log("Attaching 'All Orders' screenshot to report");
     await testInfo.attach('All Orders', { path: `./Screenshots/All Orders, ${date}.png` })
-  })
+  });

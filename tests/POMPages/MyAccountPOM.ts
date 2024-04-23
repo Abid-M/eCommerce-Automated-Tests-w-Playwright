@@ -5,7 +5,7 @@ class MyAccountPOM extends BasePOM{
     // Locators
     private logoutLink = () => this.page.getByRole('link', { name: 'Logout' });
     private ordersLink = () => this.page.getByRole('link', { name: 'Orders' });
-    public nFocusHeader = () => this.page.getByRole("link", { name: 'nFocus Shop' });
+    public nFocusHeader = () => this.page.getByRole("link", { name: 'Edgewords Shop' });
     public loginText = () => this.page.getByText("Login");
 
     async logout() {

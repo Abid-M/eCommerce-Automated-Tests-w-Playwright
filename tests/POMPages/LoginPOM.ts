@@ -1,10 +1,11 @@
 import BasePOM from "./BasePOM";
+
 class LoginPOM extends BasePOM {
     // Locators
     private usernameField = () => this.page.getByLabel('Username or email address *');
     private passwordField = () => this.page.locator('#password');
     private loginButton = () => this.page.getByRole('button', { name: 'Log in' });
-    private logoutButton = () => this.page.getByRole('link', { name: 'Logout' });
+    public logoutButton = () => this.page.getByRole('link', { name: 'Logout' });
 
     /* Clears and sets the value of the username field. */
     async setUsername(username: string) {
@@ -22,12 +23,10 @@ class LoginPOM extends BasePOM {
     }
 
     /* Attempts to log in with the specified username and password. */
-    async validLogin(username: string, password: string) : Promise<boolean> {
+    async validLogin(username: string, password: string) {
         await this.setUsername(username);
         await this.setPassword(password);
         await this.goLogin();
-        
-        return await this.logoutButton().isVisible();
     }
 }
 
