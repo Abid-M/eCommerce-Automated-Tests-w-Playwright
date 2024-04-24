@@ -19,6 +19,8 @@ jobs:
       uses: docker://mcr.microsoft.com/playwright
       with: 
         args: npx playwright install --with-deps
+    - name: install node
+      run: npm install playwright 
     - name: Run Playwright tests
       run: npx playwright test
     - uses: actions/upload-artifact@v4
