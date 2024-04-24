@@ -75,7 +75,7 @@ export const test = base.extend<fixtures & MyOptions>({
 
         // Verifies logged out if 'login' text on page
         await expect(loggedInAccountPage.loginText(), "Should be logged out").toBeVisible();
-        console.log("Successfully Logged Out")
+        console.log("Successfully Logged Out");
 
         await loggedInAccountPage.page.close();
     },
