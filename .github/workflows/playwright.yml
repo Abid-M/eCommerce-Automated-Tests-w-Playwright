@@ -16,7 +16,9 @@ jobs:
     - name: Install dependencies
       run: npm ci
     - name: Install Playwright Browsers
-      run: npx playwright install --with-deps
+      uses: docker://mcr.microsoft.com/playwright:v1.34.3-jammy
+      with: 
+        args: npx playwright install --with-deps
     - name: Run Playwright tests
       run: npx playwright test
     - uses: actions/upload-artifact@v4
