@@ -6,7 +6,7 @@ class AllOrdersPOM extends BasePOM{
     public orderTable = () => this.page.locator('.woocommerce-orders-table');
 
     async getLatestOrder () {
-        // getting the 'first' latest order top
+        // gets the 'first' latest order top
         const newOrderNo = await this.newOrderNumber().first().textContent();
         return newOrderNo?.trim().replace("#","");
     }

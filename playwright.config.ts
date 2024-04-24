@@ -1,49 +1,49 @@
 import { defineConfig, devices } from '@playwright/test';
-import dotenv from 'dotenv';
-dotenv.config();
 
+/**
+ * Read environment variables from file.
+ * https://github.com/motdotla/dotenv
+ */
+// require('dotenv').config();
+
+/**
+ * See https://playwright.dev/docs/test-configuration.
+ */
 export default defineConfig({
-  timeout: 60 * 1000,
-  testDir: './tests',
+  testDir: './e2e',
+  /* Run tests in files in parallel */
   fullyParallel: true,
+  /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
-  retries: 1,
-  workers: process.env.CI ? 1 : 1,
-  reporter: [["dot"], ["json", {
-    outputFile: "jsonReports/jsonReport.json"
-  }], ["html", {
-      open: "always"
-  }]],
+  /* Retry on CI only */
+  retries: process.env.CI ? 2 : 0,
+  /* Opt out of parallel tests on CI. */
+  workers: process.env.CI ? 1 : undefined,
+  /* Reporter to use. See https://playwright.dev/docs/test-reporters */
+  reporter: 'html',
+  /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
-    baseURL: 'https://www.edgewordstraining.co.uk/demo-site/',
-    trace: 'on',
-    headless: process.env.CI ? true : false,
-    launchOptions: {args: ["--start-maximized"]},
-    viewport: null,
-    screenshot: 'only-on-failure',
-    video: 'retain-on-failure'
+    /* Base URL to use in actions like `await page.goto('/')`. */
+    // baseURL: 'http://127.0.0.1:3000',
+
+    /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
+    trace: 'on-first-retry',
   },
 
   /* Configure projects for major browsers */
   projects: [
     {
-      name: 'chrome-test',
-      use: {
-        browserName: 'chromium', 
-        headless: false,
-        launchOptions: {
-          args: ["--start-maximized"],
-          //slowMo: 1500
-      }},
+      name: 'chromium',
+      use: { ...devices['Desktop Chrome'] },
     },
 
     {
-      name: 'firefox-test', 
+      name: 'firefox',
       use: { ...devices['Desktop Firefox'] },
     },
 
     {
-      name: 'webkit-test',
+      name: 'webkit',
       use: { ...devices['Desktop Safari'] },
     },
 
