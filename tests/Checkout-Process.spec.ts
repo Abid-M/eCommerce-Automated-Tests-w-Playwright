@@ -13,8 +13,6 @@ test("Checkout Process", async ({ page, fillCartAndClearup: cartAndClearup, navP
     await expect(mismatch, `Expected billing input fields to match`).resolves.toBe('');
 
     // Selects payment and places the order
-    // const paymentMethod = "Cheque"; //or Cash
-
     await checkout.selectPayment(defaultPaymentMethod);
     const orderRecieved = await checkout.placeOrder();
 
@@ -36,20 +34,16 @@ test("Checkout Process", async ({ page, fillCartAndClearup: cartAndClearup, navP
 
     // Capture order number on All Orders Page
     const orderNumCheck = await allOrders.getLatestOrder();
-
     expect(orderNumCheck, `Expected order number: ${orderNumCheck}, Actual order number: ${newOrderNum}`).toEqual(newOrderNum);
-    console.log("Verified that the order numbers match from checkout page..");
 
     // Takes screenshot of all orders table, highlighted the latest with the datetime
     date = new Date().toLocaleString();
     date = date.split("/").join("-").split(":").join("-");
 
-    await allOrders.orderTable().screenshot({
-      path: `./Screenshots/All Orders, ${date}.png`,
-      mask: [allOrders.page.locator('tbody tr').nth(0)],
-      maskColor: 'rgba(201, 242, 155, 0.5)',
-    });
+    await allOrders.orderTable().screenshot();
 
     console.log("Attaching 'All Orders' screenshot to report");
     await testInfo.attach('All Orders', { path: `./Screenshots/All Orders, ${date}.png` })
   });
+
+  

@@ -26,3 +26,5 @@ couponData.forEach(coupon => {
       await testInfo.attach('Cart Total', { path: `./Screenshots/Cart Total, ${date}.png` })
   });
 });
+
+

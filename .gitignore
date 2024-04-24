@@ -4,4 +4,7 @@ node_modules
 /playwright/.cache/
 /jsonReports/
 .env
-
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/

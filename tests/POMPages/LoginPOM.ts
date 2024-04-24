@@ -31,3 +31,4 @@ class LoginPOM extends BasePOM {
 }
 
 export default LoginPOM
+
