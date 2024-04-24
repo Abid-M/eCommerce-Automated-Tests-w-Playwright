@@ -22,7 +22,6 @@ class CartPOM extends BasePOM {
     /* Clears and sets the value coupon from argument value. */
     async enterCoupon(coupon: string) {
         await this.couponCodeField().fill(coupon);
-        return this;
     }
 
     /* Clicks apply coupon button. */

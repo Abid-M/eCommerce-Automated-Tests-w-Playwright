@@ -1,9 +1,9 @@
 import { test, expect } from "./Utils/Fixtures";
 import { AllOrdersPOM, CheckoutPOM, MyAccountPOM } from "./POMPages";
 
-test("Checkout Process", async ({ page, fillCartAndClearup: cartAndClearup, navPOM, customer, defaultPaymentMethod  }, testInfo) => {
+test("Checkout Process", async ({ page, filledCartAndClearup, navPOM, customer, defaultPaymentMethod  }, testInfo) => {
     // Navigate to Checkout
-    const checkout: CheckoutPOM = await cartAndClearup.goToCheckout();
+    const checkout: CheckoutPOM = await filledCartAndClearup.goToCheckout();
 
     // Fill in Billing Input Fields with customer object
     await checkout.fillInBillingDetails(customer);
@@ -40,7 +40,7 @@ test("Checkout Process", async ({ page, fillCartAndClearup: cartAndClearup, navP
     date = new Date().toLocaleString();
     date = date.split("/").join("-").split(":").join("-");
 
-    await allOrders.orderTable().screenshot();
+    await allOrders.orderTable().screenshot({path: `./Screenshots/All Orders, ${date}.png`});
 
     console.log("Attaching 'All Orders' screenshot to report");
     await testInfo.attach('All Orders', { path: `./Screenshots/All Orders, ${date}.png` })

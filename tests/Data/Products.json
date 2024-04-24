@@ -9,7 +9,7 @@
     },
     {
         "ProductName": "Cap",
-        "AddToCart" : true
+        "AddToCart" : false
     },
     {
         "ProductName": "Hoodie",
