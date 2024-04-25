@@ -3,6 +3,7 @@
 User end-to-end tests written in typescript, with the use of Playwright.
 
 ![Visual Studio Code Badge](https://img.shields.io/badge/Visual%20Studio%20Code-007ACC?logo=visualstudiocode&logoColor=fff&style=for-the-badge)
+![Node.js Badge](https://img.shields.io/badge/Node.js-393?logo=nodedotjs&logoColor=fff&style=for-the-badge)
 ![TypeScript Badge](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=fff&style=for-the-badge)
 ![Playwright Badge](https://img.shields.io/badge/Playwright-2EAD33?logo=playwright&logoColor=fff&style=for-the-badge)
 ![.ENV Badge](https://img.shields.io/badge/.ENV-ECD53F?logo=dotenv&logoColor=000&style=for-the-badge)
@@ -36,14 +37,15 @@ The tests will be conducted on the following e-commerce site:
 ## Setup Instructions
 1. Clone this repo to your local machine.
 ```
-git clone https://github.com/Abid-M/uk.co.nfocus.ecommerceproject.git
+git clone https://github.com/Abid-M/eCommerce-Automated-Tests-w-Playwright.git
 ```
    
 2. Install the following packages with `npm install`
      
 3. Create a `.env` file containing:
-   - `EMAIL=RegisteredEmail`
-   - `PASSWORD=AccountPassword`
-     - `USERNAME` and `PASSWORD` must be the registered login details
+   - `EMAIL='RegisteredEmail'`
+   - `PASSWORD='AccountPassword'`
+     - `EMAIL` and `PASSWORD` must be the registered login details
      
-5. Run the test with `npx playwright test` or via the VSC Test Explorer
+5. Run the test with `npx playwright test --workers=1` or via the VSC Test Explorer
+   • Workers is set to 1 because there is only one account being used so the tests will fail each other since they are not being run in isolation.
