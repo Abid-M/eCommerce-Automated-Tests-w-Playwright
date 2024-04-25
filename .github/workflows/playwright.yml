@@ -8,6 +8,8 @@ jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
+    environment:
+      name: myEnvironment
     steps:
     - uses: actions/checkout@v4
     - uses: actions/setup-node@v4
@@ -16,11 +18,11 @@ jobs:
     - name: Install dependencies
       run: npm ci
     - name: Install Playwright Browsers
-      uses: docker://mcr.microsoft.com/playwright
-      with: 
-        args: npx playwright install --with-deps
-    - name: install node
-      run: npm install playwright 
+      run: npx playwright install --with-deps
+    - name: Establish environment variables
+      run: |
+        echo "EMAIL=${{ secrets.EMAIL }}" >> .env
+        echo "PASSWORD=${{ secrets.PASSWORD }}" >> .env 
     - name: Run Playwright tests
       run: npx playwright test
     - uses: actions/upload-artifact@v4
