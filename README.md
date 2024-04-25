@@ -48,4 +48,4 @@ git clone https://github.com/Abid-M/eCommerce-Automated-Tests-w-Playwright.git
      - `EMAIL` and `PASSWORD` must be the registered login details
      
 5. Run the test with `npx playwright test --workers=1` or via the VSC Test Explorer
-      • Workers is set to 1 because there is only one account being used so the tests will fail each other since they are not being run in isolation.
+   - Workers is set to 1 because there is only one account being used so the tests will fail each other since they are not being run in isolation.
