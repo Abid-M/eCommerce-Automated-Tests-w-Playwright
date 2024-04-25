@@ -76,7 +76,7 @@ class CartPOM extends BasePOM {
         //const itemNamesInCart = await Promise.all(itemNamesPromises);
 
         for (const item of addedItems) {
-            await expect(this.cartItems.filter({hasText: item}), `${item} should be in the cart`).toHaveText(item);
+            await expect(this.cartItems().filter({hasText: item}), `${item} should be in the cart`).toHaveText(item);
             //console.log(`Verified that the '${item}' is in the cart`);
         }
     }
