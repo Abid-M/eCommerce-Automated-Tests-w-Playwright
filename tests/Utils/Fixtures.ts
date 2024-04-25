@@ -33,6 +33,7 @@ export const test = base.extend<fixtures & MyOptions>({
 
         // Validates login
         const login = new LoginPOM(page);
+        console.log(email, password)
         await login.validLogin(email, password);
         await expect(login.logoutButton(), "Should be logged in").toBeVisible();
 
