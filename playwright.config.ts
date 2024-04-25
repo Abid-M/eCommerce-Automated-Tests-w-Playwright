@@ -17,7 +17,7 @@ export default defineConfig({
   use: {
     baseURL: 'https://www.edgewordstraining.co.uk/demo-site/',
     trace: 'on',
-    headless: process.env.CI ? true : false,
+    headless: process.env.CI ? true : false, 
     launchOptions: {args: ["--start-maximized"]},
     viewport: null,
     screenshot: 'only-on-failure',
@@ -30,7 +30,7 @@ export default defineConfig({
       name: 'chrome-test',
       use: {
         browserName: 'chromium', 
-        headless: false,
+        headless: process.env.CI ? true : false,
         launchOptions: {
           args: ["--start-maximized"],
           //slowMo: 1500
