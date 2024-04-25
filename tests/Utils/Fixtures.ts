@@ -33,7 +33,6 @@ export const test = base.extend<fixtures & MyOptions>({
 
         // Validates login
         const login = new LoginPOM(page);
-        console.log(email, password)
         await login.validLogin(email, password);
         await expect(login.logoutButton(), "Should be logged in").toBeVisible();
 
@@ -55,6 +54,7 @@ export const test = base.extend<fixtures & MyOptions>({
         // redirect to Cart Page
         const cart: CartPOM = await shop.goToCart();
         // Verifies items are actually in the cart
+        cart.page.waitForURL(/cart/);
         cart.checkItemInCart(addedItems);
 
         await use(cart);

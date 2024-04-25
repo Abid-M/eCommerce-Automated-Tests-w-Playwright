@@ -90,14 +90,12 @@ class CartPOM extends BasePOM {
     }
 
     /* Removes all coupon discounts added to cart */
-    async removeDiscounts(): Promise<CartPOM> {
+    async removeDiscounts() {
         const removeLink = await this.removeDiscountButton().all();
 
         for (let i = 0; i < removeLink.length; i++) {
             await this.removeDiscountButton().first().click();
         }
-
-        return this;
     }
 
     async emptyCart() {
