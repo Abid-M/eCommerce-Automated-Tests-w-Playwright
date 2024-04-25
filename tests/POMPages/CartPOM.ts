@@ -4,7 +4,7 @@ import BasePOM from "./BasePOM";
 
 class CartPOM extends BasePOM {
     // Locators
-    private cartItems = () => this.page.locator("td.product-name a");
+    private cartItems = () => this.page.locator("td.product-name");
     private couponCodeField = () => this.page.getByPlaceholder('Coupon code');
     private applyCouponButton = () => this.page.getByRole('button', { name: 'Apply coupon' });
     public alertMessage = () => this.page.getByRole('alert');
@@ -71,13 +71,13 @@ class CartPOM extends BasePOM {
 
     /* Checks if added items are in the actual cart */
     async checkItemInCart(addedItems : string[]) {
-        const itemsInCart = await this.cartItems().all();
-        const itemNamesPromises = itemsInCart.map(item => item.textContent());
-        const itemNamesInCart = await Promise.all(itemNamesPromises);
+        //const itemsInCart = await this.cartItems().all();
+        //const itemNamesPromises = itemsInCart.map(item => item.textContent());
+        //const itemNamesInCart = await Promise.all(itemNamesPromises);
 
         for (const item of addedItems) {
-            expect(itemNamesInCart.includes(item)).toBeTruthy();
-            console.log(`Verified that the '${item}' is in the cart`);
+            await expect(this.cartItems.filter({hasText: item}, `${item} should be in the cart`).toHaveText(item);
+            //console.log(`Verified that the '${item}' is in the cart`);
         }
     }
 
