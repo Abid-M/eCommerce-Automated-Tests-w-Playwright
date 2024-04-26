@@ -22,10 +22,10 @@ export const test = base.extend<fixtures & MyOptions>({
     loggedInAccountPage: async ({ page, navPOM }, use) => {
         // Navigates and validates eCommerce site
         await page.goto('');
+        await navPOM.dismissBanner();
 
         const account: MyAccountPOM = await navPOM.goToAccount();
         await expect(account.nFocusHeader()).toBeVisible();
-        await navPOM.dismissBanner();
 
         // Retrieves sensitive email and password from .env file. If variable is null, throw error.
         const email: string = process.env.EMAIL ?? (() => { throw new Error("USERNAME env variable is not set"); })();

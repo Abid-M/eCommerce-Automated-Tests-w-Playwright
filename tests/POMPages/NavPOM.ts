@@ -32,9 +32,10 @@ class NavPOM extends BasePOM {
 
     /* Clicks the "Dismiss" link in the blue banner, if it is present. */
     async dismissBanner() {
-        if (await this.dismissBannerLink().isVisible()) {
+        try {
+            await this.dismissBannerLink().waitFor();
             await this.dismissBannerLink().click();
-        } else {
+        } catch {
             // No Banner displayed
         }
     }

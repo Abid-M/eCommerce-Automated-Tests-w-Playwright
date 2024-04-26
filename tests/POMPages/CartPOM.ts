@@ -4,6 +4,7 @@ import BasePOM from "./BasePOM";
 
 class CartPOM extends BasePOM {
     // Locators
+    private cartContent = () => this.page.locator('#content > div');
     private cartItems = () => this.page.locator("td.product-name");
     private couponCodeField = () => this.page.getByPlaceholder('Coupon code');
     private applyCouponButton = () => this.page.getByRole('button', { name: 'Apply coupon' });
@@ -71,9 +72,8 @@ class CartPOM extends BasePOM {
 
     /* Checks if added items are in the actual cart */
     async checkItemInCart(addedItems: string[]) {
-        const content = this.page.locator('#content > div');
-        await content.waitFor();
-        
+        await this.cartContent().waitFor();
+
         const texts = await this.cartItems().allTextContents();
         const trimmedTexts = texts.map((text) => text.trim());
 
@@ -91,20 +91,29 @@ class CartPOM extends BasePOM {
 
     /* Removes all coupon discounts added to cart */
     async removeDiscounts() {
-        const removeLink = await this.removeDiscountButton().all();
-
-        for (let i = 0; i < removeLink.length; i++) {
-            await this.removeDiscountButton().first().click();
+        //const removeLink = await this.removeDiscountButton().all();
+        while(await this.removeItemButton().first().isVisible()) {
+            await this.removeItemButton().first().click();
         }
+
+        // for (let i = 0; i < removeLink.length; i++) {
+        //     await this.removeDiscountButton().first().click();
+        // }
     }
 
     async emptyCart() {
+        await this.cartContent().waitFor();
         await this.removeDiscounts();
-        const removeItems = await this.removeItemButton().all();
 
-        for (let i = 0; i < removeItems.length; i++) {
+        //const removeItems = await this.removeItemButton().all();
+
+        while(await this.removeItemButton().first().isVisible()) {
             await this.removeItemButton().first().click();
         }
+
+        // for (let i = 0; i < removeItems.length; i++) {
+        //     await this.removeItemButton().first().click();
+        // }
     }
 }
 
