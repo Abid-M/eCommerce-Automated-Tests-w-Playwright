@@ -68,7 +68,6 @@ export const test = base.extend<fixtures & MyOptions>({
         await cart.emptyCart();
         // Verifies that the cart is empty  
         await expect(cart.cartEmptyDialog()).toBeVisible();
-        console.log("Check Cart Cleared")
 
         // Navigate to Account Page and Logout
         await navPOM.goToAccount();
@@ -76,8 +75,8 @@ export const test = base.extend<fixtures & MyOptions>({
 
         // Verifies logged out if 'login' text on page
         await expect(loggedInAccountPage.loginText(), "Should be logged out").toBeVisible();
-        console.log("Successfully Logged Out");
 
+        console.log("\u001b[1;32m Test Pass\x1b[0m")
         await loggedInAccountPage.page.close();
     },
 

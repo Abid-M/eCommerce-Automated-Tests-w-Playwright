@@ -10,11 +10,8 @@ export default defineConfig({
   retries: 1,
   reportSlowTests: null,
   workers: process.env.CI ? 1 : 1,
-  reporter: [["dot"], ["json", {
-    outputFile: "jsonReports/jsonReport.json"
-  }], ["html", {
-      open: "always"
-  }]],
+  reporter: process.env.CI ? [['github', {printSteps: true}], ["json", { outputFile: "jsonReports/jsonReport.json"}], ["html", { open: "always"}]] : 
+  [['dot'], ["html", { open: "always"}]],
   use: {
     baseURL: 'https://www.edgewordstraining.co.uk/demo-site/',
     trace: 'on',
