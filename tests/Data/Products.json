@@ -33,7 +33,7 @@
     },
     {
         "ProductName": "Polo",
-        "AddToCart" : false
+        "AddToCart" : true
     },
     {
         "ProductName": "Sunglasses",
