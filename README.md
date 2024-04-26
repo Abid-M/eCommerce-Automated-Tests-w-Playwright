@@ -1,4 +1,4 @@
-# 🛒 eCommerce Automated Tests w/ Playwright <img alt="nFocus Logo" src="https://github.com/Abid-M/eCommerce-Automated-Tests-w-Selenium/assets/77882906/16e6064a-3cde-4ee3-8107-60aa59f5dc1f" alt="nfocus_logo" align="right" width="120">
+# 🛒 eCommerce Automated Tests w/ Playwright <img alt="nFocus Logo" src="https://github.com/Abid-M/eCommerce-Automated-Tests-w-Selenium/assets/77882906/16e6064a-3cde-4ee3-8107-60aa59f5dc1f" alt="nfocus_logo" align="right" width="120"> 
 
 User end-to-end tests written in typescript, with the use of Playwright.
 
@@ -9,7 +9,7 @@ User end-to-end tests written in typescript, with the use of Playwright.
 ![.ENV Badge](https://img.shields.io/badge/.ENV-ECD53F?logo=dotenv&logoColor=000&style=for-the-badge)
 ![Git Badge](https://img.shields.io/badge/Git-F05032?logo=git&logoColor=fff&style=for-the-badge)
 
-## Overview
+## Overview ![Test workflow](https://github.com/Abid-M/eCommerce-Automated-Tests-w-Playwright/actions/workflows/playwright.yml/badge.svg)
 This project develops end-to-end tests using Playwright for an e-commerce website. The tests simulate user interactions like purchasing items, applying discounts, and verifying order details.
 
 ### Test Cases:
