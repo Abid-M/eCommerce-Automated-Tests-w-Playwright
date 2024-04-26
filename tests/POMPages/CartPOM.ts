@@ -70,15 +70,12 @@ class CartPOM extends BasePOM {
     }
 
     /* Checks if added items are in the actual cart */
-    async checkItemInCart(addedItems : string[]) {
-        //const itemsInCart = await this.cartItems().all();
-        //const itemNamesPromises = itemsInCart.map(item => item.textContent());
-        //const itemNamesInCart = await Promise.all(itemNamesPromises);
+    async checkItemInCart(addedItems: string[]) {
+        const texts = await this.cartItems().allTextContents();
+        const trimmedTexts = texts.map((text) => text.trim());
 
-        for (const item of addedItems) {
-            await expect(this.cartItems().filter({hasText: /item/}), `${item} should be in the cart`).toHaveText(item);
-            //console.log(`Verified that the '${item}' is in the cart`);
-        }
+        expect(trimmedTexts).toEqual(expect.arrayContaining(addedItems));
+        console.log(`Verified that the '${addedItems}' are in the cart`);
     }
 
     /* Navigates to the checkout page. */
