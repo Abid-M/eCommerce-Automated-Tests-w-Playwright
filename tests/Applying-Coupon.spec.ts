@@ -23,7 +23,6 @@ couponData.forEach(coupon => {
       date = date.split("/").join("-").split(":").join("-");
 
       await filledCartAndClearup.cartTotalElement().screenshot({ path: `./Screenshots/Cart Total, ${date}.png` })
-      console.log("Attaching 'Cart Total' screenshot to report")
       await testInfo.attach('Cart Total', { path: `./Screenshots/Cart Total, ${date}.png` })
   });
 });

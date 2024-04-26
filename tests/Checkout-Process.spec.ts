@@ -22,7 +22,6 @@ test("Checkout Process", async ({ page, filledCartAndClearup, navPOM, customer, 
     date = date.split("/").join("-").split(":").join("-");
 
     await page.screenshot({ path: `./Screenshots/New Order, ${date}.png`, fullPage: true });
-    console.log("Attaching 'New Order' screenshot to report");
     await testInfo.attach('New Order', { path: `./Screenshots/New Order, ${date}.png` });
 
     // Captures the new order number
@@ -41,8 +40,6 @@ test("Checkout Process", async ({ page, filledCartAndClearup, navPOM, customer, 
     date = date.split("/").join("-").split(":").join("-");
 
     await allOrders.orderTable().screenshot({path: `./Screenshots/All Orders, ${date}.png`});
-
-    console.log("Attaching 'All Orders' screenshot to report");
     await testInfo.attach('All Orders', { path: `./Screenshots/All Orders, ${date}.png` })
   });
 

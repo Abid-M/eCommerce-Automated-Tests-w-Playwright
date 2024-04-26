@@ -16,8 +16,6 @@ class ShopPOM extends BasePOM {
             if (item.AddToCart) {
                 if (await this.addToCartButton(item.ProductName).isVisible()) {
                     console.log(`'${item.ProductName}' exists on the shop page..`)
-
-                    
                 } else {
                     itemsNotFound.push(item.ProductName);
                 }
@@ -41,7 +39,7 @@ class ShopPOM extends BasePOM {
             if (item.AddToCart) {
                 if (await this.addToCartButton(item.ProductName).isVisible()) {
                     await this.addToCartButton(item.ProductName).click();
-                    console.log(`${item.ProductName} Added to Cart`);
+                    console.log(`'${item.ProductName}' added to cart..`)
                     addedItems.push(item.ProductName);
                     
                     // Wait for view cart button to be visible before moving on

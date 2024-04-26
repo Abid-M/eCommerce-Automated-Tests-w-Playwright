@@ -65,7 +65,6 @@ class CartPOM extends BasePOM {
     /* Validates that the calculated total matches the grand total price. */
     async calculateTotal(couponCode: string): Promise<number> {
         let checkTotal = await this.getSubtotalPrice() - await this.getCouponDiscount(couponCode) + await this.getShippingPrice();
-        console.log(`Calculated total: £${checkTotal}`)
 
         return Number(checkTotal.toFixed(2));
     }
@@ -84,7 +83,6 @@ class CartPOM extends BasePOM {
     /* Navigates to the checkout page. */
     async goToCheckout() {
         await this.checkoutLink().click();
-        console.log("Navigated to Checkout page")
 
         return new CheckoutPOM(this.page);
     }

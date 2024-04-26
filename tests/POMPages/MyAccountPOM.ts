@@ -15,7 +15,6 @@ class MyAccountPOM extends BasePOM{
     async goToOrders(): Promise<AllOrdersPOM> {
         // Two elements, choose first and redirect, both take to same page anyways
         await this.ordersLink().first().click();
-        console.log("Navigated to All Orders on account page")
 
         return new AllOrdersPOM(this.page);
     }
