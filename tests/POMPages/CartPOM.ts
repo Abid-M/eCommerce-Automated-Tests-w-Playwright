@@ -100,21 +100,16 @@ class CartPOM extends BasePOM {
         }
     }
 
+    /* Removes all items added to cart */
     async emptyCart() {
         await this.cartContent().waitFor();
         await this.removeDiscounts();
-
-        //const removeItems = await this.removeItemButton().all();
 
         while(await this.removeItemButton().first().isVisible()) {
             await this.removeItemButton().first().click();
             const block = this.page.locator('.blockUI.blockOverlay');
             await block.first().waitFor({state: "hidden"});
         }
-
-        // for (let i = 0; i < removeItems.length; i++) {
-        //     await this.removeItemButton().first().click();
-        // }
     }
 }
 

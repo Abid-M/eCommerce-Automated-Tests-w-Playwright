@@ -11,7 +11,6 @@ class NavPOM extends BasePOM {
     /* Navigates to the shop page. */
     async goToShop(): Promise<ShopPOM> {
         await this.shopLink().click();
-        console.log("Navigated to the Shop Page");
 
         return new ShopPOM(this.page);
     }
@@ -19,13 +18,11 @@ class NavPOM extends BasePOM {
     /* Navigates to the cart page. */
     async goToCart() {
         await this.cartLink().click();
-        console.log("Navigated to the Cart Page");
     }
 
     /* Navigates to the cart page. */
     async goToAccount() {
         await this.accountLink().click();
-        console.log("Navigated to the Account Page");
 
         return new MyAccountPOM(this.page);
     }

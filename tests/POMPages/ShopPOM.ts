@@ -56,7 +56,6 @@ class ShopPOM extends BasePOM {
     /* Navigates to the cart page. */
     async goToCart() {
         await this.viewCartButton().first().click();
-        console.log("Navigated to the Cart Page");
 
         return new CartPOM(this.page);
     }
