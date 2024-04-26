@@ -1,6 +1,6 @@
 # 🛒 eCommerce Automated Tests w/ Playwright <img alt="nFocus Logo" src="https://github.com/Abid-M/eCommerce-Automated-Tests-w-Selenium/assets/77882906/16e6064a-3cde-4ee3-8107-60aa59f5dc1f" alt="nfocus_logo" align="right" width="120"> 
 
-User end-to-end tests written in typescript, with the use of Playwright. ![Build Status](https://circleci.com/gh/Abid-M/Commerce-Automated-Tests-w-Playwright.svg?style=shield&circle-token=:circle-token)
+User end-to-end tests written in typescript, with the use of Playwright. ![Test workflow](https://github.com/github/docs/actions/workflows/playwright.yml/badge.svg)
 
 ![Visual Studio Code Badge](https://img.shields.io/badge/Visual%20Studio%20Code-007ACC?logo=visualstudiocode&logoColor=fff&style=for-the-badge)
 ![Node.js Badge](https://img.shields.io/badge/Node.js-393?logo=nodedotjs&logoColor=fff&style=for-the-badge)
