@@ -3,8 +3,8 @@ import { BasePOM, ShopPOM } from "./index.ts"
 
 class NavPOM extends BasePOM {
     // Locators
-    private shopLink = () => this.page.locator('#menu-item-43').getByRole('link', { name: 'Shop' });
-    private cartLink = () => this.page.locator('#menu-item-44').getByRole('link', { name: 'Cart' });
+    private shopLink = () => this.page.locator('#menu-main').getByRole('link', { name: 'Shop' });
+    private cartLink = () => this.page.locator('#menu-main').getByRole('link', { name: 'Cart' });
     private accountLink = () => this.page.locator('#menu-main').getByRole('link', { name: 'My account' });
     private dismissBannerLink = () => this.page.getByRole("link", { name: "Dismiss" });
 
