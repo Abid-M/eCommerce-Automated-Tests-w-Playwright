@@ -71,6 +71,9 @@ class CartPOM extends BasePOM {
 
     /* Checks if added items are in the actual cart */
     async checkItemInCart(addedItems: string[]) {
+        const content = this.page.locator('#content > div');
+        await content.waitFor();
+        
         const texts = await this.cartItems().allTextContents();
         const trimmedTexts = texts.map((text) => text.trim());
 
