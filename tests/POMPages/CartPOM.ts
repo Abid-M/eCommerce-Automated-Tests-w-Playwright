@@ -91,14 +91,13 @@ class CartPOM extends BasePOM {
 
     /* Removes all coupon discounts added to cart */
     async removeDiscounts() {
-        //const removeLink = await this.removeDiscountButton().all();
-        while(await this.removeItemButton().first().isVisible()) {
-            await this.removeItemButton().first().click();
-        }
+        const removeLink = await this.removeDiscountButton().all();
 
-        // for (let i = 0; i < removeLink.length; i++) {
-        //     await this.removeDiscountButton().first().click();
-        // }
+        for (let i = 0; i < removeLink.length; i++) {
+            await this.removeDiscountButton().first().click();
+            const block = this.page.locator('.blockUI.blockOverlay');
+            await block.first().waitFor({state: "hidden"});
+        }
     }
 
     async emptyCart() {
@@ -109,6 +108,8 @@ class CartPOM extends BasePOM {
 
         while(await this.removeItemButton().first().isVisible()) {
             await this.removeItemButton().first().click();
+            const block = this.page.locator('.blockUI.blockOverlay');
+            await block.first().waitFor({state: "hidden"});
         }
 
         // for (let i = 0; i < removeItems.length; i++) {
