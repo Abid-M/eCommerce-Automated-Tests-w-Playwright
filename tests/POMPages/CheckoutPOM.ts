@@ -28,8 +28,6 @@ class CheckoutPOM extends BasePOM {
         await this.postcodeField().fill(customerInfo.postcode);
         await this.phoneField().fill(customerInfo.phone);
         await this.emailField().fill(customerInfo.email);
-
-        console.log("Billing Details Populated..")
     }
 
     /* Validates whether the billing details within the input fields 
@@ -66,18 +64,15 @@ class CheckoutPOM extends BasePOM {
     async selectPayment(paymentMethod: string) {
         if (paymentMethod === "Cash") {
             await this.cashPaymentButton().click();
-            console.log("Cash Payment Selected")
         } else {
             // Default option is paying by check
             await this.chequePaymentButton().click();
-            console.log("Cheque Payment Selected")
         }
     }
 
     /* Places the order by clicking on the place order button. */
     async placeOrder(){
         await this.placeOrderButton().click();
-        console.log("Order Placed..");
 
         return new OrderInfoPOM(this.page);
     }

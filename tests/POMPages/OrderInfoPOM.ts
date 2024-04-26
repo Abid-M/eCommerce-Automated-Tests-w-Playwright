@@ -6,8 +6,6 @@ class OrderInfoPOM extends BasePOM {
     /* Gets the order number from the order confirmation page. */
     async getOrderNumber(): Promise<string|null> {
         const orderNum = await this.orderNumber().textContent();
-        console.log(`New Order Number: ${orderNum}`)
-
         return orderNum;
     }
 }
