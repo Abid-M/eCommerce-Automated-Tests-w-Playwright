@@ -57,7 +57,7 @@ class CartPOM extends BasePOM {
     /* Gets the coupon discount percentage. */
     async getDiscountPercentage(couponCode: string): Promise<number> {
         const discountPercentage = await this.getCouponDiscount(couponCode) / await this.getSubtotalPrice() * 100;
-        console.log(`Applied a ${discountPercentage}% discount`)
+        console.log(`Applied a ${discountPercentage}% discount with coupon '${couponCode}`)
 
         return Number(discountPercentage.toFixed(2));
     }

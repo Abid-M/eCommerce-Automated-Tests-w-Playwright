@@ -34,6 +34,7 @@ test("Checkout Process", async ({ page, filledCartAndClearup, navPOM, customer, 
     // Capture order number on All Orders Page
     const orderNumCheck = await allOrders.getLatestOrder();
     expect(orderNumCheck, `Expected order number: ${orderNumCheck}, Actual order number: ${newOrderNum}`).toEqual(newOrderNum);
+    console.log(`Expected order number: ${orderNumCheck}, Actual order number: ${newOrderNum}`);
 
     // Takes screenshot of all orders table, highlighted the latest with the datetime
     date = new Date().toLocaleString();
